@@ -16,7 +16,22 @@ nvidia-docker run --rm -it \
         --volume="$HOME/Downloads:/home/gui/Downloads" \
         --volume="$HOME/Projects:/home/gui/Projects" \
         --volume="$HOME/.m2:/home/gui/.m2" \
+        --volume="$HOME/.ssh:/home/gui/.ssh" \
+        --volume="$HOME/.gitconfig:/home/gui/.gitconfig" \
+	--volume="$HOME/.java:/home/gui/.java" \
+	--volume="$HOME/.config:/home/gui/.config" \
+	--volume="$HOME/.zshrc:/home/gui/.zshrc" \
+	--volume="$HOME/.bashrc:/home/gui/.bashrc" \
+	--volume="$HOME/.sharedrc:/home/gui/.sharedrc" \
+        --volume="$HOME/.PyCharmCE2018.1:/home/gui/.PyCharmCE2018.1" \
+	--volume="$HOME/anaconda2/envs:/home/gui/anaconda2/envs" \
+        --volume="$HOME/.conda:/home/gui/.conda" \
         --workdir="/home/gui" \
 	--privileged \
-	dnn_gui  
+	dnn_gui  bash
+
+        --workdir="/home/gui" \
+        --privileged \
+     	invoice_extraction_dev_gui /bin/bash
+
 

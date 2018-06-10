@@ -1,8 +1,13 @@
 FROM nvidia/cuda
+# nvidia is using ubuntu as base image
+# reference: https://www.pugetsystems.com/labs/hpc/Docker-and-NVIDIA-docker-on-your-workstation-Using-Graphical-Applications-915/
 
 RUN apt-get -y update
-RUN apt-get install -y sudo tmux git rsync wget curl
-RUN apt-get install -y vim-gnome
+RUN apt-get install -y firefox 
+
+RUN apt-get install -y sudo tmux git rsync wget curl vim-gnome \
+      default-jdk
+
 RUN apt-get install -y python freeglut3-dev python-pip
 RUN pip install gym 
 
@@ -13,24 +18,14 @@ RUN mkdir -p /home/gui
 RUN usermod -aG sudo gui
 RUN echo "gui:gui" | chpasswd
 
-# # Replace 1000 with your user / group id
-# RUN export uid=1000 gid=1000 && \
-#     echo "gui:x:${uid}:${gid}:gui,,,:/home/gui:/bin/bash" >> /etc/passwd && \
-#     echo "gui:x:${uid}:" >> /etc/group && \
-#     echo "gui ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/gui && \
-#     chmod 0440 /etc/sudoers.d/gui && \
-#     chown ${uid}:${gid} -R /home/gui
- 
-# COPY --chown=1000:1000 bashrc /home/gui/.bashrc
-
-# RUN rm -rf /notebooks/*
-# ADD *.ipynb /notebooks/
-
-# VOLUME /notebooks/src
-# VOLUME /notebooks/data
-
-# WORKDIR /notebooks
-# CMD ["/run_jupyter.sh"]
+# -------------------------------------------------------
+# anaconda
+USER gui
+ENV HOME /home/gui
+RUN cd /home/gui; \
+  wget https://repo.continuum.io/archive/Anaconda2-4.3.0-Linux-x86_64.sh; \
+  bash Anaconda2-4.3.0-Linux-x86_64.sh -b ; 
+# ------------------------------------------------------
 
 USER gui
 WORKDIR /home/gui
