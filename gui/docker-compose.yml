@@ -1,0 +1,41 @@
+version: '2.0'
+
+services:
+
+  work_gui:
+    build: ./container
+    hostname: work_gui
+    container_name: work_gui
+    network_mode: host
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /etc/localtime:/etc/localtime:ro 
+      - /etc/hosts:/etc/hosts
+      - /dev/shm:/dev/shm 
+      - ./home:/home
+      - $HOME/bin:/home/gui/bin
+      - $HOME/Downloads:/home/gui/Downloads
+      - $HOME/Projects:/home/gui/Projects
+      - $HOME/.m2:/home/gui/.m2
+      - $HOME/.ssh:/home/gui/.ssh
+      - $HOME/.zshrc:/home/gui/.zshrc
+      - $HOME/.bashrc:/home/gui/.bashrc
+      - $HOME/.sharedrc:/home/gui/.sharedrc
+      - $HOME/.config/Code:/home/gui/.config/Code
+      - $HOME/.gitconfig:/home/gui/.gitconfig
+      - $HOME/.IdeaIC2017.3:/home/gui/.IdeaIC2017.3
+      - $HOME/.IntelliJIdea2017.3:/home/gui/.IntelliJIdea2017.3 
+      - $HOME/.vscode:/home/gui/.vscode
+    devices:
+      - "/dev/dri:/dev/dri"
+      - "/dev/snd:/dev/snd"
+      - "/dev/video0:/dev/video0"
+      - "/dev/input:/dev/input"
+    user: gui
+    working_dir: /home/gui
+    privileged: true
+    environment:
+      - DISPLAY 
+    entrypoint: /usr/bin/bash # /usr/bin/tilix   # /usr/bin/firefox # chromium-browser
+    # /home/nhan2/bin/start_ide.sh 
+
