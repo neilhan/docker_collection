@@ -30,8 +30,5 @@ nvidia-docker run --rm -it \
 	--privileged \
 	dnn_gui  bash
 
-        --workdir="/home/gui" \
-        --privileged \
-     	invoice_extraction_dev_gui /bin/bash
 
 
