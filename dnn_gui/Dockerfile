@@ -3,13 +3,14 @@ FROM nvidia/cuda
 # reference: https://www.pugetsystems.com/labs/hpc/Docker-and-NVIDIA-docker-on-your-workstation-Using-Graphical-Applications-915/
 
 RUN apt-get -y update
-RUN apt-get install -y firefox 
+RUN apt-get install -y firefox libcanberra-gtk3-module libcanberra-gtk-module
 
 RUN apt-get install -y sudo tmux git rsync wget curl vim-gnome \
-      default-jdk
+      default-jdk prelink
 
-RUN apt-get install -y python freeglut3-dev python-pip
-RUN pip install gym 
+RUN apt-get install -y python freeglut3-dev python-pip python-tk
+RUN pip install --upgrade pip
+RUN pip install gym matplotlib numpy pandas
 
 # -------------------------------------------------------
 # create user
