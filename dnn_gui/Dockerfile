@@ -9,6 +9,7 @@ RUN apt-get install -y sudo tmux git rsync wget curl vim-gnome \
       default-jdk prelink
 
 RUN apt-get install -y python freeglut3-dev python-pip python-tk
+RUN apt-get install -y ffmpeg
 RUN pip install --upgrade pip
 RUN pip install gym matplotlib numpy pandas
 
