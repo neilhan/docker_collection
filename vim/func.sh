@@ -10,6 +10,7 @@ function set_xhost_ip {
         ip=$(ifconfig utun1 | grep inet | awk '$1=="inet" {print $2}')
     fi
     xhost + $ip
+    export ip=$ip
 }
 
 function build_image {
