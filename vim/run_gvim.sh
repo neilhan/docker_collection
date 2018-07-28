@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source $DIR/func.sh
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $DIR/func.sh
 
 if [ "$(uname)" == "Darwin" ]; then
     set_xhost_ip
