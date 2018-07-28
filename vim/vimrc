@@ -1,0 +1,143 @@
+set hlsearch
+set ic
+set nocompatible
+set encoding=utf-8
+filetype off
+
+" this is my add new line key mapping
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
+set number
+
+" file search
+set path+=**
+
+set wildmenu
+
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+
+" cursor position
+au BufLeave * let b:winview = winsaveview()
+au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+
+" generate autocomplete tags
+command! MakeTags !ctags -R --exclude=.git --exclude=model --exclude=docker .
+au BufWritePost *.java,*.scala,*.py,*.jsx,*.js,*.hs silent! !ctags -R --exclude=.git --exclude=model --exclude=docker &
+
+" bundle plugin manager
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" let Vundle manage Vundle, required!
+Bundle 'gmarik/vundle'
+
+" nerdtree
+Bundle 'scrooloose/nerdtree'
+" " auto open
+" autocmd vimenter * NERDTree
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd GuiEnter * silent NERDTree
+" autocmd VimEnter * silent NERDTree
+" same tree
+autocmd TabEnter * silent exe MirrorNerdTreeIfOneWindow()
+
+" toggle nerdtree
+map <F2> :NERDTreeToggle<CR>
+" auto close if is the last
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" automatic NERDTree mirroring on tab switching
+" when having just one window in the tab
+function MirrorNerdTreeIfOneWindow()
+  if winnr("$") < 2
+    NERDTreeMirror
+    " hack to move the focus from the NERDTree to the main window
+    wincmd p
+    wincmd l
+  endif
+endfunction
+
+" status bar
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Powerline setup
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+set laststatus=2
+" Powerline setup ends
+" autocomplete
+
+" debugger
+Bundle 'idanarye/vim-vebugger'
+
+" enable folding, <za>
+set foldmethod=indent
+set foldlevel=99
+
+" auto-indentation for python
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \  softtabstop=4
+    \  shiftwidth=4
+    \  expandtab
+    \  fileformat=unix
+" \  autoindent \  textwidth=79
+Plugin 'vim-scripts/indentpython.vim'
+
+" auto indentation for js, html, css
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=4
+    \  softtabstop=4
+    \  shiftwidth=4
+
+" autocomplete
+" goto buffer command: 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab', 'new-or-existing-tab'
+Bundle 'Valloric/YouCompleteMe'
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_goto_buffer_command='new-or-existing-tab'
+if !empty($CONDA_PREFIX)
+    let g:ycm_python_binary_path=$CONDA_PREFIX . "/bin/python"
+endif
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" color code for python
+let python_highlight_all=1
+syntax on
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/base16-vim'
+Plugin 'gosukiwi/vim-atom-dark'
+Plugin 'ayu-theme/ayu-vim'
+
+Plugin 'sentientmachine/Pretty-Vim-Python'
+set background=dark 
+" colorscheme molokai
+highlight Comment cterm=bold
+
+colorscheme base16-default-dark
+
+" colorscheme atom-dark
+
+" let ayucolor="dark"
+" colorscheme ayu
+
+" auto-pairs
+Plugin 'jiangmiao/auto-pairs'
+
+" search by ctrl-p
+Plugin 'kien/ctrlp.vim'
+
