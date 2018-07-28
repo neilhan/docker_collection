@@ -21,10 +21,12 @@ if [ "$(uname)" == "Darwin" ]; then
         -u=$UID:$(id -g $USER) \
         --privileged \
         --workdir="/home/gui" \
-        --volume=$HOME/:/home/gui \
-        --volume=$DIR/work_dir:/home/gui/.vim \
-        d_vim gvim -f -u /home/gui/.vim/vimrc $@
-
+        -v $HOME/:/home/gui \
+        -v $DIR/work_dir:/home/gui/.vim \
+	-v $DIR/work_dir/vimrc:/home/gui/.vimrc \
+	-v $DIR/work_dir/gvimrc:/home/gui/.gvimrc \
+        d_vim gvim -f $@  &>/dev/null
+        # -u /home/gui/.vim/vimrc 
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     docker run --rm -it \
@@ -42,7 +44,10 @@ else
         -u=$UID:$(id -g $USER) \
         --privileged \
         --workdir="/home/gui" \
-        --volume=$HOME/:/home/gui \
-        --volume=$DIR/work_dir:/home/gui/.vim \
-        d_vim gvim -f -u /home/gui/.vim/vimrc $@
+        -v $HOME/:/home/gui \
+        -v $DIR/work_dir:/home/gui/.vim \
+	-v $DIR/work_dir/vimrc:/home/gui/.vimrc \
+	-v $DIR/work_dir/gvimrc:/home/gui/.gvimrc \
+        d_vim gvim -f $@ &>/dev/null
+        #  -u /home/gui/.vim/vimrc
 fi
