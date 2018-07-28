@@ -19,7 +19,7 @@ docker run --rm -it \
 	--net=host \
     -u=$UID:$(id -g $USER) \
 	--volume="/dev/shm:/dev/shm" \
-    --volume=$HOME/:/home/$USER \
+    --volume=$HOME/:/home/gui \
     --volume=$DIR/work_dir:/home/gui/.vim \
 	--privileged \
 	d_vim vim $@
