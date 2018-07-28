@@ -8,7 +8,7 @@ RUN apt-get install -y bash  ctags  curl  git  python
 RUN apt-get install -y build-essential cmake perl python-dev
 # --------------------------------------------------------
 # gvim gnome UI
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module firefox
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim-gnome
 # -------------------------------------------------------
 # create user
