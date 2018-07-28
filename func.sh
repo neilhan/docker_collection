@@ -40,3 +40,43 @@ function build_image {
     docker tag $image_name docker.artifactory.a.intuit.com/cloud/cloud_ops/iat/$image_name:latest
 
 }
+
+export docker_common_options_mac="
+        -v /tmp/.X11-unix:/tmp/.X11-unix 
+        -e DISPLAY=$ip:0 
+        --device /dev/dri 
+        --device /dev/snd 
+        --device /dev/video0 
+        --device /dev/input 
+        -v $DIR/timezone:/etc/timezone 
+        -v /etc/hosts:/etc/hosts:ro 
+        -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
+        -v /dev/shm:/dev/shm 
+        -u=$UID:$(id -g $USER) 
+        --privileged 
+        --workdir=$HOME 
+	-v $HOME:$HOME 
+        -v $DIR/container:$HOME/.vim 
+	-v $DIR/container/vimrc:$HOME/.vimrc 
+	-v $DIR/container/gvimrc:$HOME/.gvimrc 
+	-v $DIR/container/zshrc:$HOME/.zshrc "
+
+export docker_common_options="
+        -v /tmp/.X11-unix:/tmp/.X11-unix 
+        -e DISPLAY=unix$DISPLAY 
+        --device /dev/dri 
+        --device /dev/snd 
+        --device /dev/video0 
+        --device /dev/input 
+        -v /etc/localtime:/etc/localtime:ro 
+        -v /etc/hosts:/etc/hosts:ro 
+        -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
+        -v /dev/shm:/dev/shm 
+        -u=$UID:$(id -g $USER) 
+        --privileged 
+        --workdir=$HOME 
+	-v $HOME:$HOME 
+        -v $DIR/container:$HOME/.vim 
+	-v $DIR/container/vimrc:$HOME/.vimrc 
+	-v $DIR/container/gvimrc:$HOME/.gvimrc 
+	-v $DIR/container/zshrc:$HOME/.zshrc "
