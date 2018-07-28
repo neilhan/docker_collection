@@ -20,7 +20,7 @@ if [ "$(uname)" == "Darwin" ]; then
         --workdir="/home/gui" \
         --volume=$HOME/:/home/gui \
         --volume=$DIR/work_dir:/home/gui/.vim \
-        d_vim vim $@
+        d_vim vim -u /home/gui/.vim/vimrc $@
 
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -41,5 +41,5 @@ else
         --workdir="/home/gui" \
         --volume=$HOME/:/home/gui \
         --volume=$DIR/work_dir:/home/gui/.vim \
-        d_vim vim $@
+        d_vim vim -u /home/gui/.vim/vimrc $@
 fi
