@@ -32,6 +32,9 @@ export docker_common_options_mac="
         -v /dev/shm:/dev/shm 
         -u=$UID:$(id -g $USER) 
         --privileged 
+        -e LC_ALL=en_CA.UTF-8
+        -e LANG=en_CA.UTF-8
+        -e LANGUAGE=en_CA.UTF-8
         --workdir=$HOME 
 	-e HOME=$HOME 
 	-v $HOME:$HOME 
@@ -53,6 +56,9 @@ export docker_common_options="
         -v /dev/shm:/dev/shm 
         -u=$UID:$(id -g $USER) 
         --privileged 
+        -e LC_ALL=en_CA.UTF-8
+        -e LANG=en_CA.UTF-8
+        -e LANGUAGE=en_CA.UTF-8
         --workdir=$HOME 
 	-e HOME=$HOME 
 	-v $HOME:$HOME 
@@ -61,3 +67,4 @@ export docker_common_options="
 	-v $DIR/container/gvimrc:$HOME/.gvimrc 
 	-v $DIR/container/zshrc:$HOME/.zshrc "
 
+        # -v $DIR/container/etc_default_locale:/etc/default/locale 

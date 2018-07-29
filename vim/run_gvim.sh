@@ -27,6 +27,6 @@ else
     $docker_cmd run --rm -it \
         --name d_vim \
         $docker_common_options \
-        d_vim gvim -f $@  # &>/dev/null
+        d_vim  gvim -f $@  &>/dev/null
         # d_vim gvim -f $@
 fi
