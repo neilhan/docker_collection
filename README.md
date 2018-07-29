@@ -1,5 +1,8 @@
 Some collection of docker images
 --------------------------------
+# to run GUI app on mac os
+install XQuartz by: brew cask install xquartz
+The run.sh will add docker display to xhost.
 
 # dnn_gui
 GUI enabled, works for mac os. 
