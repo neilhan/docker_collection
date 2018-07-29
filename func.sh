@@ -41,6 +41,12 @@ function build_image {
 
 }
 
+docker_cmd=$(which nvidia-docker)
+if [ -f $docker_cmd ]; then
+    docker_cmd=$(which docker)
+fi
+export docker_cmd=$docker_cmd
+
 export docker_common_options_mac="
         -v /tmp/.X11-unix:/tmp/.X11-unix 
         -e DISPLAY=$ip:0 
@@ -55,6 +61,7 @@ export docker_common_options_mac="
         -u=$UID:$(id -g $USER) 
         --privileged 
         --workdir=$HOME 
+	-e HOME=$HOME 
 	-v $HOME:$HOME 
         -v $DIR/container:$HOME/.vim 
 	-v $DIR/container/vimrc:$HOME/.vimrc 
@@ -75,8 +82,10 @@ export docker_common_options="
         -u=$UID:$(id -g $USER) 
         --privileged 
         --workdir=$HOME 
+	-e HOME=$HOME 
 	-v $HOME:$HOME 
         -v $DIR/container:$HOME/.vim 
 	-v $DIR/container/vimrc:$HOME/.vimrc 
 	-v $DIR/container/gvimrc:$HOME/.gvimrc 
 	-v $DIR/container/zshrc:$HOME/.zshrc "
+
