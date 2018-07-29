@@ -5,12 +5,13 @@ function test {
 }
 
 function set_xhost_ip {
-    ip=$(ifconfig utun1 | grep inet | awk '$1=="inet" {print $2}')
-    if [ -z ip ]; then
-        ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-    fi
-    xhost + $ip
-    export ip=$ip
+    # ip=$(ifconfig utun1 | grep inet | awk '$1=="inet" {print $2}')
+    # if [ -z ip ]; then
+    #     ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+    # fi
+    # xhost + $ip
+    xhost + 127.0.0.1
+    # export ip=$ip
 }
 
 docker_cmd=$(which nvidia-docker)
@@ -21,7 +22,7 @@ export docker_cmd=$docker_cmd
 
 export docker_common_options_mac="
         -v /tmp/.X11-unix:/tmp/.X11-unix 
-        -e DISPLAY=$ip:0 
+        -e DISPLAY=docker.for.mac.localhost:0 
         --device /dev/dri 
         --device /dev/snd 
         --device /dev/video0 
