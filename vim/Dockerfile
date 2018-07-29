@@ -30,14 +30,12 @@ RUN mkdir -p /home/gui
 RUN usermod -aG sudo gui
 RUN echo "gui:gui" | chpasswd
 
+# --------------------------------------------------------
+# for mac home directory
 RUN ln -s /home /Users
 
+# -------------------------------------------------------
 USER gui
 ENV HOME /home/gui
 
-# COPY vimrc /home/gui/.vimrc
-VOLUME /home/gui/.vim
-
 CMD ["/usr/bin/zsh"]
-# CMD    ["vncserver", "-fg" ]
-# ENTRYPOINT ["vncserver", "-fg" ]

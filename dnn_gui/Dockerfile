@@ -29,6 +29,10 @@ RUN mkdir -p /home/gui
 RUN usermod -aG sudo gui
 RUN echo "gui:gui" | chpasswd
 
+# --------------------------------------------------------
+# for mac home directory
+RUN ln -s /home /Users
+
 # # -------------------------------------------------------
 # # anaconda
 # USER gui
@@ -36,8 +40,8 @@ RUN echo "gui:gui" | chpasswd
 # RUN cd /home/gui; \
 #   wget https://repo.continuum.io/archive/Anaconda2-4.3.0-Linux-x86_64.sh; \
 #   bash Anaconda2-4.3.0-Linux-x86_64.sh -b ; 
-# ------------------------------------------------------
 
+# -------------------------------------------------------
 USER gui
 WORKDIR /home/gui
 
