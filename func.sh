@@ -54,7 +54,7 @@ export docker_common_options_mac="
         --device /dev/snd 
         --device /dev/video0 
         --device /dev/input 
-        -v $DIR/timezone:/etc/timezone 
+        -v $DIR/container/timezone:/etc/timezone 
         -v /etc/hosts:/etc/hosts:ro 
         -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
         -v /dev/shm:/dev/shm 
