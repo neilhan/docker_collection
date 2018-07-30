@@ -56,7 +56,9 @@ Bundle 'scrooloose/nerdtree'
 " autocmd GuiEnter * silent NERDTree
 " autocmd VimEnter * silent NERDTree
 " same tree
-autocmd TabEnter * silent exe MirrorNerdTreeIfOneWindow()
+
+" auto open
+" autocmd TabEnter * silent exe MirrorNerdTreeIfOneWindow()
 
 " toggle nerdtree
 map <F2> :NERDTreeToggle<CR>
@@ -72,6 +74,8 @@ function MirrorNerdTreeIfOneWindow()
     wincmd l
   endif
 endfunction
+" find current file
+nmap <leader>t :NERDTreeFind<CR>
 
 " status bar
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
