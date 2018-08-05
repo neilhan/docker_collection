@@ -11,6 +11,11 @@ if [ "$(uname)" == "Darwin" ]; then
     set_xhost_ip
     $docker_cmd run --rm -it \
         --name d_vim \
+        -u=$UID:$(id -g $USER) \
+        -v $DIR/container:$HOME/.vim \
+	-v $DIR/container/vimrc:$HOME/.vimrc \
+	-v $DIR/container/gvimrc:$HOME/.gvimrc \
+	-v $DIR/container/zshrc:$HOME/.zshrc \
         $docker_common_options_mac \
         d_vim vim $@
 
@@ -22,6 +27,11 @@ else
     # set_xhost_ip is provided by func.sh
     $docker_cmd run --rm -it \
         --name d_vim \
+        -u=$UID:$(id -g $USER) \
+        -v $DIR/container:$HOME/.vim \
+	-v $DIR/container/vimrc:$HOME/.vimrc \
+	-v $DIR/container/gvimrc:$HOME/.gvimrc \
+	-v $DIR/container/zshrc:$HOME/.zshrc \
         $docker_common_options \
         d_vim vim $@
 fi
