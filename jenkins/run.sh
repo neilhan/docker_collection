@@ -15,6 +15,7 @@ if [ "$(uname)" == "Darwin" ]; then
         -u root \
         -v $DIR/jenkins-data:/var/jenkins_home \
         -v $DIR/home:/home \
+        -v /var/run/docker.sock:/var/run/docker.sock \
         $docker_common_options_mac \
         jenkinsci/blueocean $@
 
@@ -30,6 +31,7 @@ else
         -u root \
         -v $DIR/jenkins-data:/var/jenkins_home \
         -v $DIR/home:/home \
+        -v /var/run/docker.sock:/var/run/docker.sock \
         $docker_common_options \
         jenkinsci/blueocean $@
 fi
