@@ -4,6 +4,11 @@ set nocompatible
 set encoding=utf-8
 filetype off
 
+" default copy to clipboard
+set clipboard+=unnamedplus
+" enable better mouse
+set mouse=a
+
 " this is my add new line key mapping
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
@@ -77,12 +82,17 @@ endfunction
 " find current file
 nmap <leader>t :NERDTreeFind<CR>
 
-" status bar
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-" Powerline setup
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
-set laststatus=2
-" Powerline setup ends
+""  status bar
+"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"" Powerline setup
+"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+"set laststatus=2
+"" Powerline setup ends
+
+" airline replace powerline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 " autocomplete
 
 " debugger
@@ -91,6 +101,12 @@ Bundle 'idanarye/vim-vebugger'
 " enable folding, <za>
 set foldmethod=indent
 set foldlevel=99
+"
+" using 4 spaces
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 
 " auto-indentation for python
 au BufNewFile,BufRead *.py
@@ -128,7 +144,7 @@ Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'ayu-theme/ayu-vim'
 
 Plugin 'sentientmachine/Pretty-Vim-Python'
-set background=dark 
+set background=dark
 " colorscheme molokai
 highlight Comment cterm=bold
 
