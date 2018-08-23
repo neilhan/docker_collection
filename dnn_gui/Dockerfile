@@ -4,11 +4,11 @@ FROM tensorflow/tensorflow:latest-gpu-py3
 
 RUN apt-get -y update
 
-
 RUN apt-get install -y zsh bash 
 RUN apt-get install -y sudo tmux git rsync wget curl \
         vim ctags curl git python python-dev python-pip
 RUN apt-get install -y build-essential cmake perl
+RUN apt-get install -y markdown
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim-gnome locales locales-all

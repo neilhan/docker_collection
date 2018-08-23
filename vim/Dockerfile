@@ -6,6 +6,7 @@ RUN apt-get -y update
 RUN apt-get install -y vim zsh apt-utils
 RUN apt-get install -y bash  ctags  curl  git  python 
 RUN apt-get install -y build-essential cmake perl python-dev
+RUN apt-get install -y markdown
 # --------------------------------------------------------
 # gvim gnome UI
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module
