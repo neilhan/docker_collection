@@ -9,7 +9,7 @@ if [ "$(uname)" == "Darwin" ]; then
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by func.sh
     set_xhost_ip
-    $docker_cmd run -it \
+    $docker_cmd run --rm -d \
         --name d_skype \
         --hostname d_skype \
         -u=$UID:$(id -g $USER) \
@@ -22,7 +22,7 @@ else
     source $DIR/../func.sh 
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by func.sh
-    $docker_cmd run --rm -it \
+    $docker_cmd run --rm -d \
         --name d_skype \
         --hostname d_skype \
         -u=$UID:$(id -g $USER) \
