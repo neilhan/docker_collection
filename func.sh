@@ -25,8 +25,13 @@ export docker_common_options_mac="
         -e DISPLAY=docker.for.mac.localhost:0 
         --device /dev/dri 
         --device /dev/snd 
+        --device /dev/shm 
         --device /dev/video0 
         --device /dev/input 
+        -v /dev/dri:/dev/dri 
+        -v /dev/snd:/dev/snd 
+        -v /dev/shm:/dev/shm 
+        -v /dev/video0:/dev/video0 
         -v $DIR/container/timezone:/etc/timezone 
         -v /etc/hosts:/etc/hosts:ro 
         -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
@@ -44,8 +49,13 @@ export docker_common_options="
         -e DISPLAY=unix$DISPLAY 
         --device /dev/dri 
         --device /dev/snd 
+        --device /dev/shm 
         --device /dev/video0 
         --device /dev/input 
+        -v /dev/dri:/dev/dri 
+        -v /dev/snd:/dev/snd 
+        -v /dev/shm:/dev/shm 
+        -v /dev/video0:/dev/video0 
         -v /etc/localtime:/etc/localtime:ro 
         -v /etc/hosts:/etc/hosts:ro 
         -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 

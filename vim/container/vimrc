@@ -159,6 +159,8 @@ colorscheme base16-default-dark
 Plugin 'jiangmiao/auto-pairs'
 
 " markdown
+" c-m, file:///tmp/vim-markdown-preview.html
+" https://github.com/JamshedVesuna/vim-markdown-preview
 Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
