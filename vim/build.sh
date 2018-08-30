@@ -8,4 +8,11 @@ if [ ! -d $DIR/container/bundle/vundle ]; then
     git clone https://github.com/Valloric/YouCompleteMe $DIR/container/bundle/YouCompleteMe
 fi
 
-docker build --rm -t d_vim .
+build_new=$1
+
+if [ "$build_new" = "new" ]; then
+    echo reset docker image
+    opt="--no-cache"
+fi
+
+docker build --rm -t d_vim $opt .

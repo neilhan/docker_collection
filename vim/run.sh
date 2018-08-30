@@ -17,7 +17,7 @@ if [ "$(uname)" == "Darwin" ]; then
 	-v $DIR/container/gvimrc:$HOME/.gvimrc \
 	-v $DIR/container/zshrc:$HOME/.zshrc \
         $docker_common_options_mac \
-        d_vim vim $@
+        d_vim nvim $@
 
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -33,5 +33,5 @@ else
 	-v $DIR/container/gvimrc:$HOME/.gvimrc \
 	-v $DIR/container/zshrc:$HOME/.zshrc \
         $docker_common_options \
-        d_vim vim $@
+        d_vim nvim $@
 fi
