@@ -18,7 +18,7 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $HOME/.m2:/home/gui/.m2 \
         -v $HOME/Projects:/home/gui/Projects \
         $docker_common_options_mac \
-        d_sshx $@
+        d_centos $@
 
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -35,5 +35,5 @@ else
         -v $HOME/.m2:/home/gui/.m2 \
         -v $HOME/Projects:/home/gui/Projects \
         $docker_common_options \
-        d_sshx $@
+        d_centos $@
 fi

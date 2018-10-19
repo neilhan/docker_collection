@@ -9,4 +9,4 @@ if [ "$build_new" = "new" ]; then
     opt="--no-cache"
 fi
 
-docker build --rm -t d_sshx $opt .
+docker build --rm -t d_centos $opt .

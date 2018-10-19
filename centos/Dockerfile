@@ -7,7 +7,9 @@ FROM docker.io/centos
 RUN yum -y update
 RUN yum -y install epel-release
 RUN yum -y update
-RUN yum -y install deltarpm
+RUN yum -y install deltarpm \
+                    ruby-devel gcc make rpm-build rubygems bsdtar
+RUN gem install fpm
 
 # ------------------------------------------------------
 # Install the gui packages appropriate software
@@ -16,7 +18,7 @@ RUN yum -y install deltarpm
 # RUN su gui -c "gsettings set org.gnome.desktop.interface text-scaling-factor 1.5"
 RUN yum -y install tmux git vim maven util-linux-user \
             rsync dpkg gnupg sudo wget vim bash
-RUN yum -y install tree tilix maven fpm
+RUN yum -y install tree tilix maven 
 
 RUN echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.conf
 
