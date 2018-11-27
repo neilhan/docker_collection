@@ -34,7 +34,6 @@ export docker_common_options_mac="
         -v /dev/video0:/dev/video0 
         -v $DIR/container/timezone:/etc/timezone 
         -v /etc/hosts:/etc/hosts:ro 
-        -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
         -v /dev/shm:/dev/shm 
         --privileged 
         -e LC_ALL=en_CA.UTF-8
@@ -43,6 +42,7 @@ export docker_common_options_mac="
         --workdir=$HOME 
 	-e HOME=$HOME 
 	-v $HOME:$HOME"
+# -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
 
 export docker_common_options="
         -v /tmp/.X11-unix:/tmp/.X11-unix 
@@ -58,7 +58,6 @@ export docker_common_options="
         -v /dev/video0:/dev/video0 
         -v /etc/localtime:/etc/localtime:ro 
         -v /etc/hosts:/etc/hosts:ro 
-        -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
         -v /dev/shm:/dev/shm 
         --privileged 
         -e LC_ALL=en_CA.UTF-8
@@ -67,5 +66,5 @@ export docker_common_options="
         --workdir=$HOME 
 	-e HOME=$HOME 
 	-v $HOME:$HOME"
-
+# -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
         # -v $DIR/container/etc_default_locale:/etc/default/locale 
