@@ -11,6 +11,7 @@ if [ "$(uname)" == "Darwin" ]; then
     set_xhost_ip
     $docker_cmd run --rm -it \
         --name d_sshx \
+        -v /tmp:/tmp \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
         -v $HOME/.ssh:/home/gui/.ssh \
@@ -31,6 +32,7 @@ else
     $docker_cmd run --rm -it \
         --name d_sshx \
         --net=host \
+        -v /tmp:/tmp \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
         -v $HOME/.ssh:/home/gui/.ssh \

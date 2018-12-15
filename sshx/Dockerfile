@@ -33,16 +33,19 @@ RUN pip install --upgrade awscli  # --user
 RUN pip install --upgrade aws-sam-cli
 
 # -------------------------------------------------------
+# kubectl 
+# -------------------------------------------------------
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 RUN apt-get update -y
 RUN apt-get install -y kubectl
+# -------------------------------------------------------
 # kubeless 
 # -------------------------------------------------------
-RUN curl -OL https://github.com/kubeless/kubeless/releases/download/v1.0.0/kubeless_linux-amd64.zip && \
-  unzip kubeless_linux-amd64.zip && \
-  mv bundles/kubeless_linux-amd64/kubeless /usr/local/bin/ && \
-  rm -rf bundles && rm kubeless_linux-amd64.zip
+# RUN curl -OL https://github.com/kubeless/kubeless/releases/download/v1.0.0/kubeless_linux-amd64.zip && \
+#   unzip kubeless_linux-amd64.zip && \
+#   mv bundles/kubeless_linux-amd64/kubeless /usr/local/bin/ && \
+#   rm -rf bundles && rm kubeless_linux-amd64.zip
 
 # -------------------------------------------------------
 # -------------------------------------------------------
