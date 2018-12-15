@@ -18,6 +18,7 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $HOME/.sharedrc:/home/gui/.sharedrc \
         -v $HOME/.m2:/home/gui/.m2 \
         -v $HOME/Projects:/home/gui/Projects \
+        -v $HOME:/Users/$USER \
         $docker_common_options_mac \
         d_sshx $@
 
@@ -37,6 +38,7 @@ else
         -v $HOME/.sharedrc:/home/gui/.sharedrc \
         -v $HOME/.m2:/home/gui/.m2 \
         -v $HOME/Projects:/home/gui/Projects \
+        -v $HOME:/home/$USER \
         $docker_common_options \
         d_sshx $@
 fi
