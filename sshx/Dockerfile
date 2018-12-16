@@ -3,16 +3,23 @@ MAINTAINER http://neilhan.ca
 
 # Install the appropriate software
 RUN apt-get -y update 
-RUN apt-get install -y zsh apt-utils
+RUN apt-get install -y zsh apt-utils neovim
 RUN apt-get install -y bash  ctags curl git python wget build-essential
 RUN apt-get install -y build-essential cmake 
 RUN apt-get install -y openssh-client tmux sudo
 RUN apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 RUN apt-get install -y maven
 # ----------------------------------
+# sshx install
+# ----------------------------------
 RUN apt-get install -y rubygems ruby ruby-dev
 RUN gem install sshx
 RUN gem install --no-ri --no-rdoc fpm  # rpm tool
+
+# ------------------------------------
+# clojure
+# ------------------------------------
+RUN apt-get install -y leiningen
 
 # -----------------------------------
 # RUN wget -qO- https://deb.nodesource.com/setup_10.x | sudo -E bash -
