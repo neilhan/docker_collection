@@ -10,7 +10,8 @@ if [ "$(uname)" == "Darwin" ]; then
     # set_xhost_ip is provided by func.sh
     set_xhost_ip
     $docker_cmd run --rm -it \
-        --name d_sshx \
+        --name d_aws_sam \
+        -v /tmp:/tmp \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
         -v $HOME/.ssh:/home/gui/.ssh \
@@ -20,7 +21,7 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $HOME/Projects:/home/gui/Projects \
         -v $HOME:/Users/$USER \
         $docker_common_options_mac \
-        d_sshx $@
+        d_aws_sam $@
 
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -29,8 +30,9 @@ else
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by func.sh
     $docker_cmd run --rm -it \
-        --name d_sshx \
+        --name d_aws_sam \
         --net=host \
+        -v /tmp:/tmp \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
         -v $HOME/.ssh:/home/gui/.ssh \
@@ -40,6 +42,6 @@ else
         -v $HOME/Projects:/home/gui/Projects \
         -v $HOME:/home/$USER \
         $docker_common_options \
-        d_sshx $@
+        d_aws_sam $@
 fi
 

@@ -16,44 +16,6 @@ RUN apt-get install -y rubygems ruby ruby-dev
 RUN gem install sshx
 RUN gem install --no-ri --no-rdoc fpm  # rpm tool
 
-# ------------------------------------
-# clojure
-# ------------------------------------
-RUN apt-get install -y leiningen
-
-# -----------------------------------
-# RUN wget -qO- https://deb.nodesource.com/setup_10.x | sudo -E bash -
-# RUN apt-get install -y nodejs
-
-# RUN npm install aws-es-curl -g
-
-# -----------------------------------
-RUN apt-get install -y docker.io
-
-# -----------------------------------
-# aws  sam needs docker
-# -----------------------------
-RUN apt-get install -y python-pip python-dev build-essential 
-RUN pip install --upgrade pip
-RUN pip install --upgrade awscli  # --user
-# aws sam
-RUN pip install --upgrade aws-sam-cli
-
-# -------------------------------------------------------
-# kubectl 
-# -------------------------------------------------------
-RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-RUN echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-RUN apt-get update -y
-RUN apt-get install -y kubectl
-# -------------------------------------------------------
-# kubeless 
-# -------------------------------------------------------
-# RUN curl -OL https://github.com/kubeless/kubeless/releases/download/v1.0.0/kubeless_linux-amd64.zip && \
-#   unzip kubeless_linux-amd64.zip && \
-#   mv bundles/kubeless_linux-amd64/kubeless /usr/local/bin/ && \
-#   rm -rf bundles && rm kubeless_linux-amd64.zip
-
 # -------------------------------------------------------
 # -------------------------------------------------------
 # create user
