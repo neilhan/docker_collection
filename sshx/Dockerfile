@@ -19,11 +19,12 @@ RUN gem install --no-ri --no-rdoc fpm  # rpm tool
 # -------------------------------------------------------
 # -------------------------------------------------------
 # create user
-RUN useradd -ms /bin/bash gui 
-RUN mkdir -p /home/gui
-RUN usermod -aG sudo gui
-RUN echo "gui:gui" | chpasswd
-RUN usermod -aG docker gui
+ARG user=sshx
+RUN useradd -ms /bin/bash sshx 
+RUN mkdir -p /home/sshx
+RUN usermod -aG sudo sshx
+RUN echo "sshx:sshx" | chpasswd
+RUN usermod -aG docker sshx
 
 # --------------------------------------------------------
 # for mac home directory
@@ -31,7 +32,7 @@ RUN ln -s /home /Users
 RUN ln -s /bin/sed /usr/bin/sed
 
 # -------------------------------------------------------
-USER gui
-ENV HOME /home/gui
+USER sshx
+ENV HOME /home/sshx
 
 CMD ["/usr/bin/zsh"]

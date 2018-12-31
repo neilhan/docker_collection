@@ -2,6 +2,7 @@
 
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+DOCKER_USER=vim
 
 if [ "$(uname)" == "Darwin" ]; then
     # func.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
@@ -12,10 +13,10 @@ if [ "$(uname)" == "Darwin" ]; then
     $docker_cmd run --rm -it \
         --name d_vim \
         -u=$UID:$(id -g $USER) \
-        -v $DIR/container:$HOME/.vim \
-	-v $DIR/container/vimrc:$HOME/.vimrc \
-	-v $DIR/container/gvimrc:$HOME/.gvimrc \
-	-v $DIR/container/zshrc:$HOME/.zshrc \
+        -v $DIR/container:/home/$DOCKER_USER/.vim \
+        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
+        -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
+        -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
         $docker_common_options_mac \
         d_vim nvim $@
 
@@ -28,10 +29,10 @@ else
     $docker_cmd run --rm -it \
         --name d_vim \
         -u=$UID:$(id -g $USER) \
-        -v $DIR/container:$HOME/.vim \
-	-v $DIR/container/vimrc:$HOME/.vimrc \
-	-v $DIR/container/gvimrc:$HOME/.gvimrc \
-	-v $DIR/container/zshrc:$HOME/.zshrc \
+        -v $DIR/container:/home/$DOCKER_USER/.vim \
+        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
+        -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
+        -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
         $docker_common_options \
         d_vim nvim $@
 fi

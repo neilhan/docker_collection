@@ -2,6 +2,7 @@
 
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+DOCKER_USER=sshx
 
 if [ "$(uname)" == "Darwin" ]; then
     # func.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
@@ -13,11 +14,11 @@ if [ "$(uname)" == "Darwin" ]; then
         --name d_sshx \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
-        -v $HOME/.ssh:/home/gui/.ssh \
-        -v $HOME/.zshrc:/home/gui/.zshrc \
-        -v $HOME/.sharedrc:/home/gui/.sharedrc \
-        -v $HOME/.m2:/home/gui/.m2 \
-        -v $HOME/Projects:/home/gui/Projects \
+        -v $HOME/.ssh:/home/sshx/.ssh \
+        -v $HOME/.zshrc:/home/sshx/.zshrc \
+        -v $HOME/.sharedrc:/home/sshx/.sharedrc \
+        -v $HOME/.m2:/home/sshx/.m2 \
+        -v $HOME/Projects:/home/sshx/Projects \
         -v $HOME:/Users/$USER \
         $docker_common_options_mac \
         d_sshx $@
@@ -33,11 +34,11 @@ else
         --net=host \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
-        -v $HOME/.ssh:/home/gui/.ssh \
-        -v $HOME/.zshrc:/home/gui/.zshrc \
-        -v $HOME/.sharedrc:/home/gui/.sharedrc \
-        -v $HOME/.m2:/home/gui/.m2 \
-        -v $HOME/Projects:/home/gui/Projects \
+        -v $HOME/.ssh:/home/sshx/.ssh \
+        -v $HOME/.zshrc:/home/sshx/.zshrc \
+        -v $HOME/.sharedrc:/home/sshx/.sharedrc \
+        -v $HOME/.m2:/home/sshx/.m2 \
+        -v $HOME/Projects:/home/sshx/Projects \
         -v $HOME:/home/$USER \
         $docker_common_options \
         d_sshx $@

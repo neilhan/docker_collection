@@ -26,18 +26,21 @@ RUN apt-get install -y markdown
 # ENV LANGUAGE=en_CA.UTF-8
 
 # -------------------------------------------------------
+# -------------------------------------------------------
 # create user
-RUN useradd -ms /bin/bash gui 
-RUN mkdir -p /home/gui
-RUN usermod -aG sudo gui
-RUN echo "gui:gui" | chpasswd
+# -------------------------------------------------------
+ARG user=vim
+RUN useradd -ms /bin/bash vim 
+RUN mkdir -p /home/vim
+RUN usermod -aG sudo vim
+RUN echo "vim:vim" | chpasswd
 
 # --------------------------------------------------------
 # for mac home directory
 RUN ln -s /home /Users
 
 # -------------------------------------------------------
-USER gui
-ENV HOME /home/gui
+USER vim
+ENV HOME /home/vim
 
 CMD ["/usr/bin/zsh"]
