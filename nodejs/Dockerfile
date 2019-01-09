@@ -4,6 +4,7 @@ MAINTAINER http://neilhan.ca
 # Install the appropriate software
 RUN apt-get -y update 
 RUN apt-get install -y zsh apt-utils neovim net-tools
+RUN apt-get install -y neovim python-neovim python3-neovim xclip xsel
 RUN apt-get install -y bash  ctags curl git python wget build-essential
 RUN apt-get install -y build-essential cmake 
 RUN apt-get install -y openssh-client tmux sudo

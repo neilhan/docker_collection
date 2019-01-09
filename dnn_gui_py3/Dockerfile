@@ -6,8 +6,7 @@ RUN apt-get -y update
 
 RUN apt-get install -y zsh bash 
 RUN apt-get install -y sudo tmux git rsync wget curl \
-        ctags curl git python python-dev python-pip
-RUN apt-get install -y neovim python-neovim python3-neovim xclip xsel
+        ctags curl git python3 python3-dev python3-pip
 RUN apt-get install -y build-essential cmake perl
 RUN apt-get install -y markdown
 
@@ -16,16 +15,19 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y locales locales-all
 
 RUN apt-get install -y default-jdk prelink
 
-RUN apt-get install -y freeglut3-dev python-pip python-tk
+RUN apt-get install -y freeglut3-dev python3-pip python3-tk
 RUN apt-get install -y ffmpeg
 
-RUN pip install --upgrade pip
-RUN pip install pudb six
-RUN pip install gym matplotlib numpy pandas tensorflow
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+RUN pip3 install --upgrade pip
+RUN pip3 install pudb six
+RUN pip3 install gym matplotlib numpy pandas tensorflow
+RUN pip3 install selenium
+RUN apt-get install -y chromium-chromedriver
 
 # -------------------------------------------------------
 # create user
-ARG user=dnn_gui
+ARG user=dnn_gui_py3
 RUN useradd -ms /bin/bash $user 
 RUN mkdir -p /home/$user
 RUN usermod -aG sudo $user

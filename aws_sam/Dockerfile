@@ -30,11 +30,11 @@ RUN pip install --upgrade aws-sam-cli
 # create user
 # -------------------------------------------------------
 ARG user=aws_sam
-RUN useradd -ms /bin/bash aws_sam 
-RUN mkdir -p /home/aws_sam
-RUN usermod -aG sudo aws_sam
-RUN echo "aws_sam:aws_sam" | chpasswd
-RUN usermod -aG docker aws_sam
+RUN useradd -ms /bin/bash $user 
+RUN mkdir -p /home/$user
+RUN usermod -aG sudo $user
+RUN echo "$user:$user" | chpasswd
+RUN usermod -aG docker $user
 
 # --------------------------------------------------------
 # for mac home directory
@@ -42,7 +42,7 @@ RUN ln -s /home /Users
 RUN ln -s /bin/sed /usr/bin/sed
 
 # -------------------------------------------------------
-USER aws_sam
-ENV HOME /home/aws_sam
+USER $user
+ENV HOME /home/$user
 
 CMD ["/usr/bin/zsh"]

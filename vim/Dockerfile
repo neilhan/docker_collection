@@ -6,7 +6,7 @@ RUN apt-get -y update
 RUN apt-get install -y zsh apt-utils
 RUN apt-get install -y bash  ctags  curl  git  python 
 RUN apt-get install -y build-essential cmake perl python-dev
-RUN apt-get install -y neovim python-neovim python3-neovim
+RUN apt-get install -y neovim python-neovim python3-neovim xclip xsel
 RUN apt-get install -y markdown
 # --------------------------------------------------------
 # # gvim gnome UI
@@ -30,17 +30,17 @@ RUN apt-get install -y markdown
 # create user
 # -------------------------------------------------------
 ARG user=vim
-RUN useradd -ms /bin/bash vim 
-RUN mkdir -p /home/vim
-RUN usermod -aG sudo vim
-RUN echo "vim:vim" | chpasswd
+RUN useradd -ms /bin/bash $user 
+RUN mkdir -p /home/$user
+RUN usermod -aG sudo $user
+RUN echo "$user:$user" | chpasswd
 
 # --------------------------------------------------------
 # for mac home directory
 RUN ln -s /home /Users
 
 # -------------------------------------------------------
-USER vim
-ENV HOME /home/vim
+USER $user
+ENV HOME /home/$user
 
 CMD ["/usr/bin/zsh"]
