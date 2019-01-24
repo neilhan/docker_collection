@@ -14,12 +14,12 @@ if [ "$(uname)" == "Darwin" ]; then
         --name d_sshx \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
-        -v $HOME/.ssh:/home/sshx/.ssh \
-        -v $HOME/.zshrc:/home/sshx/.zshrc \
-        -v $HOME/.sharedrc:/home/sshx/.sharedrc \
-        -v $HOME/.m2:/home/sshx/.m2 \
-        -v $HOME/Projects:/home/sshx/Projects \
-        -v $HOME:/Users/$USER \
+        -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
+        -v $HOME/.zshrc:/home/$DOCKER_USER/.zshrc \
+        -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
+        -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
+        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
+        -v $HOME:/Users/$DOCKER_USER \
         $docker_common_options_mac \
         d_sshx $@
 
@@ -34,12 +34,12 @@ else
         --net=host \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
-        -v $HOME/.ssh:/home/sshx/.ssh \
-        -v $HOME/.zshrc:/home/sshx/.zshrc \
-        -v $HOME/.sharedrc:/home/sshx/.sharedrc \
-        -v $HOME/.m2:/home/sshx/.m2 \
-        -v $HOME/Projects:/home/sshx/Projects \
-        -v $HOME:/home/$USER \
+        -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
+        -v $HOME/.zshrc:/home/$DOCKER_USER/.zshrc \
+        -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
+        -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
+        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
+        -v $HOME:/home/$DOCKER_USER \
         $docker_common_options \
         d_sshx $@
 fi
