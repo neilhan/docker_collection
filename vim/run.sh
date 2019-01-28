@@ -10,11 +10,14 @@ if [ "$(uname)" == "Darwin" ]; then
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by func.sh
     set_xhost_ip
+    touch $DIR/container/viminfo
     $docker_cmd run --rm -it \
         --name d_vim \
         -u=$UID:$(id -g $USER) \
+        -v $HOME:/home/$DOCKER_USER \
         -v $DIR/container:/home/$DOCKER_USER/.vim \
         -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
+        -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
         -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
