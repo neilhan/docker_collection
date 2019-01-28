@@ -2,7 +2,7 @@
 
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-DOCKER_USER=nodejs10
+DOCKER_USER=vim
 
 if [ "$(uname)" == "Darwin" ]; then
     # func.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
@@ -11,15 +11,12 @@ if [ "$(uname)" == "Darwin" ]; then
     # set_xhost_ip is provided by func.sh
     set_xhost_ip
     $docker_cmd run --rm -it \
-        --name d_nodejs10 \
-        -v /tmp:/tmp \
-        -v /var/run/docker.sock:/var/run/docker.sock \
+        --name d_vim \
         -u=$UID:$(id -g $USER) \
-        -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
-        -v $HOME/.zshrc:/home/$DOCKER_USER/.zshrc \
-        -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
-        -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
-        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
+        -v $DIR/container/vim:/home/$DOCKER_USER/.vim \
+        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
+        -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
+        -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -e DISPLAY=docker.for.mac.localhost:0 \
         --device /dev/shm \
@@ -32,11 +29,11 @@ if [ "$(uname)" == "Darwin" ]; then
         -e LC_ALL=en_CA.UTF-8 \
         -e LANG=en_CA.UTF-8 \
         -e LANGUAGE=en_CA.UTF-8 \
+        --workdir=$HOME \
         -e HOME=/home/$DOCKER_USER \
         -v $DIR/container/local:/home/$DOCKER_USER/.local \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
-        --workdir=/home/$DOCKER_USER \
-        d_nodejs10 $@
+        d_vim bash $@
 
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -45,18 +42,12 @@ else
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by func.sh
     $docker_cmd run --rm -it \
-        --name d_nodejs10 \
-        --net=host \
-        -v /tmp:/tmp \
-        -v /var/run/docker.sock:/var/run/docker.sock \
+        --name d_vim \
         -u=$UID:$(id -g $USER) \
-        -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
-        -v $HOME/.zshrc:/home/$DOCKER_USER/.zshrc \
-        -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
-        -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
-        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
-        -v $HOME:/home/$USER \
+        -v $DIR/container:/home/$DOCKER_USER/.vim \
+        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
+        -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
+        -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
         $docker_common_options \
-        d_nodejs10 $@
+        d_vim bash $@
 fi
-

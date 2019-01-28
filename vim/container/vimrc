@@ -10,8 +10,8 @@ set clipboard+=unnamedplus
 set mouse=a
 
 " this is my add new line key mapping
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
+" nmap <S-Enter> O<Esc>
+" nmap <CR> o<Esc>
 set number
 
 " file search
@@ -67,10 +67,11 @@ Bundle 'scrooloose/nerdtree'
 
 " toggle nerdtree
 map <F2> :NERDTreeToggle<CR>
-" auto close if is the last
+" find current file
+nmap <leader>t :NERDTreeFind<CR>
+" when having just one window in the tab, auto close if is the last
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " automatic NERDTree mirroring on tab switching
-" when having just one window in the tab
 function MirrorNerdTreeIfOneWindow()
   if winnr("$") < 2
     NERDTreeMirror
@@ -79,8 +80,6 @@ function MirrorNerdTreeIfOneWindow()
     wincmd l
   endif
 endfunction
-" find current file
-nmap <leader>t :NERDTreeFind<CR>
 
 ""  status bar
 "Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -110,19 +109,13 @@ set expandtab
 
 " auto-indentation for python
 au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \  softtabstop=4
-    \  shiftwidth=4
-    \  expandtab
-    \  fileformat=unix
+    \ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab fileformat=unix
 " \  autoindent \  textwidth=79
 Plugin 'vim-scripts/indentpython.vim'
 
 " auto indentation for js, html, css
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=4
-    \  softtabstop=4
-    \  shiftwidth=4
+au BufNewFile,BufRead *.js,*.html,*.css
+    \ set tabstop=4 softtabstop=4 shiftwidth=4
 
 " autocomplete
 " goto buffer command: 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab', 'new-or-existing-tab'
@@ -143,20 +136,19 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'ayu-theme/ayu-vim'
 
-Plugin 'sentientmachine/Pretty-Vim-Python'
-set background=dark
-" colorscheme molokai
-highlight Comment cterm=bold
-
-colorscheme base16-default-dark
-
-" colorscheme atom-dark
-
-" let ayucolor="dark"
-" colorscheme ayu
+" colorscheme afterglow
+Plugin 'rafi/awesome-vim-colorschemes'
+colorscheme afterglow
 
 " auto-pairs
 Plugin 'jiangmiao/auto-pairs'
+
+" rainbow parantheses
+Plugin 'kien/rainbow_parentheses.vim'
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " markdown
 " c-m, file:///tmp/vim-markdown-preview.html
@@ -168,3 +160,5 @@ let vim_markdown_preview_browser='Google Chrome'
 " search by ctrl-p
 Plugin 'kien/ctrlp.vim'
 
+" ack replacing grep
+Plugin 'mileszs/ack.vim'

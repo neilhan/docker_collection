@@ -17,8 +17,23 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
         -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
-        $docker_common_options_mac \
-        d_vim nvim $@
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=docker.for.mac.localhost:0 \
+        --device /dev/shm \
+        --device /dev/input \
+        -v /dev/shm:/dev/shm \
+        -v $DIR/container/timezone:/etc/timezone \
+        -v /etc/hosts:/etc/hosts:ro \
+        -v /dev/shm:/dev/shm \
+        --privileged \
+        -e LC_ALL=en_CA.UTF-8 \
+        -e LANG=en_CA.UTF-8 \
+        -e LANGUAGE=en_CA.UTF-8 \
+        -e HOME=/home/$DOCKER_USER \
+        -v $DIR/container/local:/home/$DOCKER_USER/.local \
+        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
+        --workdir=/home/$DOCKER_USER \
+        d_vim nvim -u /home/$DOCKER_USER/.vimrc $@
 
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
