@@ -14,10 +14,17 @@ if [ "$(uname)" == "Darwin" ]; then
     $docker_cmd run --rm -it \
         --name d_vim \
         -u=$UID:$(id -g $USER) \
+        -v $HOME:/home/$DOCKER_USER \
+        -v $HOME:/home/$USER \
         -v $DIR/container/vim:/home/$DOCKER_USER/.vim \
         -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
         -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
+        -v $DIR/container/viminfo:/home/$USER/.viminfo \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
+        -v $DIR/container/local:/home/$DOCKER_USER/.local \
+        -v $DIR/container/local:/home/$USER/.local \
+        -v $HOME:/home/$DOCKER_USER \
+        -v $HOME:/home/$USER \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -e DISPLAY=docker.for.mac.localhost:0 \
         --device /dev/shm \
@@ -32,8 +39,6 @@ if [ "$(uname)" == "Darwin" ]; then
         -e LANGUAGE=en_CA.UTF-8 \
         --workdir=$HOME \
         -e HOME=/home/$DOCKER_USER \
-        -v $DIR/container/local:/home/$DOCKER_USER/.local \
-        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         d_vim bash $@
 
 else
@@ -45,10 +50,15 @@ else
     $docker_cmd run --rm -it \
         --name d_vim \
         -u=$UID:$(id -g $USER) \
-        -v $DIR/container:/home/$DOCKER_USER/.vim \
+        -v $HOME:/home/$DOCKER_USER \
+        -v $HOME:/home/$USER \
+        -v $DIR/container/vim:/home/$DOCKER_USER/.vim \
         -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
-        -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
+        -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
+        -v $DIR/container/viminfo:/home/$USER/.viminfo \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
+        -v $DIR/container/local:/home/$DOCKER_USER/.local \
+        -v $DIR/container/local:/home/$USER/.local \
         $docker_common_options \
         d_vim bash $@
 fi
