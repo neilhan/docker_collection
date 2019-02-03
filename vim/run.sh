@@ -18,7 +18,6 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $DIR/container:/home/$DOCKER_USER/.vim \
         -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
         -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
-        -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -e DISPLAY=docker.for.mac.localhost:0 \

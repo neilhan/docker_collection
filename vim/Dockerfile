@@ -7,7 +7,7 @@ RUN apt-get install -y zsh apt-utils
 RUN apt-get install -y bash  ctags  curl  git  python 
 RUN apt-get install -y build-essential cmake perl python-dev
 RUN apt-get install -y neovim python-neovim python3-neovim xclip xsel
-RUN apt-get install -y markdown
+RUN apt-get install -y markdown ack
 # --------------------------------------------------------
 # # gvim gnome UI
 # RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module
