@@ -15,4 +15,4 @@ if [ "$build_new" = "new" ]; then
     opt="--no-cache"
 fi
 
-docker build --rm -t d_vim $opt .
+docker build --build-arg host_uid=$(id -u) --build-arg host_gid=$(id -g) -t d_vim $opt .
