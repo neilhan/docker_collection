@@ -39,6 +39,7 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $DIR/container/config:/home/$DOCKER_USER/.config \
         --workdir=/home/$DOCKER_USER \
         -p 3000:3000 \
+        -p 3001:3001 \
         d_nodejs11 $@
 
 else
