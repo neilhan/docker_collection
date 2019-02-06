@@ -5,6 +5,7 @@ export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOCKER_USER=vim
 
 touch $DIR/container/viminfo; chmod a+x $DIR/container/viminfo
+
 if [ "$(uname)" == "Darwin" ]; then
     # func.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
     source $DIR/../func.sh 
@@ -14,10 +15,11 @@ if [ "$(uname)" == "Darwin" ]; then
     $docker_cmd run --rm -it \
         --name d_vim \
         -u=$UID:$(id -g $USER) \
-        -v $HOME:/home/$DOCKER_USER \
-        -v $HOME:/home/$USER \
+        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         -v $DIR/container/vim:/home/$DOCKER_USER/.vim \
+        -v $DIR/container/vim:/home/$USER/.vim \
         -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
+        -v $DIR/container/vimrc:/home/$USER/.vimrc \
         -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
         -v $DIR/container/viminfo:/home/$USER/.viminfo \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \

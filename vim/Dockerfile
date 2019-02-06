@@ -21,6 +21,7 @@ RUN groupadd -g $host_gid -o $user
 RUN echo "$user:x:$host_uid:$host_gid::/home/$user:/usr/bin/zsh" >> /etc/passwd
 RUN usermod -aG sudo $user
 RUN echo "$user:$user" | chpasswd
+RUN mkdir /home/$user; chown $user:$user /home/$user
 
 # --------------------------------------------------------
 # for mac home directory

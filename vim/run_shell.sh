@@ -2,6 +2,9 @@
 
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+echo $DIR/container/vimrc
+ls -l $DIR/container/vimrc
+
 DOCKER_USER=vim
 
 if [ "$(uname)" == "Darwin" ]; then
@@ -14,17 +17,15 @@ if [ "$(uname)" == "Darwin" ]; then
     $docker_cmd run --rm -it \
         --name d_vim \
         -u=$UID:$(id -g $USER) \
-        -v $HOME:/home/$DOCKER_USER \
-        -v $HOME:/home/$USER \
+        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         -v $DIR/container/vim:/home/$DOCKER_USER/.vim \
         -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
+        -v $DIR/container/vimrc:/home/$USER/.vimrc \
         -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
         -v $DIR/container/viminfo:/home/$USER/.viminfo \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
         -v $DIR/container/local:/home/$DOCKER_USER/.local \
         -v $DIR/container/local:/home/$USER/.local \
-        -v $HOME:/home/$DOCKER_USER \
-        -v $HOME:/home/$USER \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -e DISPLAY=docker.for.mac.localhost:0 \
         --device /dev/shm \
