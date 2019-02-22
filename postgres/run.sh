@@ -2,6 +2,8 @@
 
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+mkdir -p $DIR/container/data
+
 DOCKER_USER=postgres
 
 if [ "$(uname)" == "Darwin" ]; then
@@ -21,6 +23,7 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v $DIR/container/data:/var/lib/postgresql/data \
         -e DISPLAY=docker.for.mac.localhost:0 \
         --device /dev/shm \
         --device /dev/input \
@@ -28,15 +31,13 @@ if [ "$(uname)" == "Darwin" ]; then
         -v /etc/hosts:/etc/hosts:ro \
         -v /dev/shm:/dev/shm \
         --privileged \
+        --workdir=/home/$DOCKER_USER \
         -e LC_ALL=en_CA.UTF-8 \
         -e LANG=en_CA.UTF-8 \
         -e LANGUAGE=en_CA.UTF-8 \
         -e HOME=/home/$DOCKER_USER \
-        -v $DIR/container/local:/home/$DOCKER_USER/.local \
-        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
-        -v $DIR/container/npm:/home/$DOCKER_USER/.npm \
         -v $DIR/container/config:/home/$DOCKER_USER/.config \
-        --workdir=/home/$DOCKER_USER \
+        -v $DIR/container/local:/home/$DOCKER_USER/.local \
         -p 5432:5432 \
         d_postgres bash $@
 
@@ -58,7 +59,8 @@ else
         -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
         -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
-        -v $HOME:/home/$USER \
+        -v $DIR/container/data:/var/lib/postgresql/data \
+        --workdir=/home/$DOCKER_USER \
         -p 5432:5432 \
         $docker_common_options \
         d_postgres bash $@

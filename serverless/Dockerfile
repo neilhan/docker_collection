@@ -46,4 +46,4 @@ RUN ln -s /bin/sed /usr/bin/sed
 USER $user
 ENV HOME /home/$user
 
-CMD ["/usr/bin/zsh"]
+CMD ["/usr/bin/bash"]

@@ -3,42 +3,34 @@ MAINTAINER http://neilhan.ca
 
 # Install the appropriate software
 RUN apt-get -y update 
-
-# -----------------------------------
-RUN apt-get install -y zsh apt-utils neovim net-tools
-RUN apt-get install -y neovim python-neovim python3-neovim xclip xsel
-RUN apt-get install -y bash  ctags curl git python wget build-essential
+RUN apt-get install -y fish zsh bash apt-utils net-tools
+RUN apt-get install -y curl wget build-essential
 RUN apt-get install -y build-essential cmake 
-RUN apt-get install -y openssh-client tmux sudo
-RUN apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-RUN apt-get install -y maven
-
-# -------------------------------------
-# to run intellij in this docker image
-# -------------------------------------
-RUN apt-get install -y openjfx
+RUN apt-get install -y sudo
+RUN apt-get install -y apt-transport-https ca-certificates software-properties-common
 
 # -----------------------------------
-# docker in docker
-# -----------------------------------
-RUN apt-get install -y docker.io
-
-# -----------------------------------
-# nodejs v11
+# nodejs v8.10
 # -----------------------------------
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
+
+# some tools ------------------------
+RUN npm install -g serverless
 
 # -------------------------------------------------------
 # -------------------------------------------------------
 # create user
 # -------------------------------------------------------
+ARG host_uid
+ARG host_gid
 ARG user=nodejs810
-RUN useradd -ms /bin/bash $user 
-RUN mkdir -p /home/$user
+RUN groupadd -g $host_gid -o $user
+RUN echo "$user:x:$host_uid:$host_gid::/home/$user:/usr/bin/zsh" >> /etc/passwd
+# RUN useradd --uid $host_uid --gid $host_gid -m -o -s /bin/zsh $user 
 RUN usermod -aG sudo $user
 RUN echo "$user:$user" | chpasswd
-RUN usermod -aG docker $user
+# RUN usermod -aG docker $user
 
 # --------------------------------------------------------
 # for mac home directory
@@ -49,4 +41,4 @@ RUN ln -s /bin/sed /usr/bin/sed
 USER $user
 ENV HOME /home/$user
 
-CMD ["/usr/bin/zsh"]
+CMD ["/usr/bin/fish"]
