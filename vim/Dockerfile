@@ -4,10 +4,9 @@ MAINTAINER http://neilhan.ca
 # Install the appropriate software
 RUN apt-get -y update 
 RUN apt-get install -y zsh bash apt-utils
-RUN apt-get install -y ctags curl git python 
-RUN apt-get install -y build-essential cmake perl python-dev
-RUN apt-get install -y neovim python-neovim python3-neovim xclip xsel
-RUN apt-get install -y markdown ack
+RUN apt-get install -y curl git 
+RUN apt-get install -y build-essential cmake 
+RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev
 
 # -------------------------------------------------------
 # -------------------------------------------------------
