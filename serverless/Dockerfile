@@ -4,7 +4,7 @@ MAINTAINER http://neilhan.ca
 # Install the appropriate software
 RUN apt-get -y update 
 RUN apt-get install -y fish zsh bash apt-utils net-tools
-RUN apt-get install -y curl wget build-essential
+RUN apt-get install -y curl wget build-essential git
 RUN apt-get install -y build-essential cmake 
 RUN apt-get install -y sudo
 RUN apt-get install -y apt-transport-https ca-certificates software-properties-common
@@ -21,7 +21,21 @@ RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
 
 # -----------------------------------
+# aws, serverless
 RUN npm install -g serverless
+
+# -----------------------------------
+# aws  sam needs docker
+# -----------------------------
+# docker
+RUN apt-get install -y docker.io
+
+RUN apt-get install -y python-pip python-dev build-essential 
+RUN pip install --upgrade pip
+# aws
+RUN pip install --upgrade awscli
+# aws sam
+RUN pip install --upgrade aws-sam-cli
 
 # -------------------------------------------------------
 # -------------------------------------------------------
@@ -46,4 +60,4 @@ RUN ln -s /bin/sed /usr/bin/sed
 USER $user
 ENV HOME /home/$user
 
-CMD ["/usr/bin/bash"]
+CMD ["/bin/bash"]

@@ -4,7 +4,7 @@ MAINTAINER http://neilhan.ca
 # Install the appropriate software
 RUN apt-get -y update 
 RUN apt-get install -y zsh bash apt-utils net-tools
-RUN apt-get install -y curl wget build-essential
+RUN apt-get install -y curl wget build-essential git
 RUN apt-get install -y build-essential cmake 
 RUN apt-get install -y sudo
 RUN apt-get install -y apt-transport-https ca-certificates software-properties-common

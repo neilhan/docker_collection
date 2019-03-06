@@ -2,7 +2,7 @@
 
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-DOCKER_USER=serverless
+DOCKER_USER=vscode
 
 mkdir -p $DIR/container
 
@@ -13,7 +13,7 @@ if [ "$(uname)" == "Darwin" ]; then
     # set_xhost_ip is provided by func.sh
     set_xhost_ip
     $docker_cmd run --rm -it \
-        --name d_serverless \
+        --name d_vscode \
         -v /tmp:/tmp \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
@@ -22,6 +22,7 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
         -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
+        -v $DIR/container:/home/$DOCKER_USER \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -e DISPLAY=docker.for.mac.localhost:0 \
         --device /dev/shm \
@@ -40,7 +41,9 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $DIR/container/npm:/home/$DOCKER_USER/.npm \
         -v $DIR/container/config:/home/$DOCKER_USER/.config \
         --workdir=/home/$DOCKER_USER \
-        d_serverless $@
+        -p 3000:3000 \
+        -p 3001:3001 \
+        d_vscode $@
 
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -49,7 +52,7 @@ else
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by func.sh
     $docker_cmd run --rm -it \
-        --name d_serverless \
+        --name d_vscode \
         --net=host \
         -v /tmp:/tmp \
         -v /var/run/docker.sock:/var/run/docker.sock \
@@ -61,6 +64,6 @@ else
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         -v $HOME:/home/$USER \
         $docker_common_options \
-        d_serverless $@
+        d_vscode $@
 fi
 
