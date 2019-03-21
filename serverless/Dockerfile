@@ -3,7 +3,7 @@ MAINTAINER http://neilhan.ca
 
 # Install the appropriate software
 RUN apt-get -y update 
-RUN apt-get install -y fish zsh bash apt-utils net-tools
+RUN apt-get install -y zsh bash apt-utils net-tools unzip
 RUN apt-get install -y curl wget build-essential git
 RUN apt-get install -y build-essential cmake 
 RUN apt-get install -y sudo
@@ -36,6 +36,21 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade awscli
 # aws sam
 RUN pip install --upgrade aws-sam-cli
+
+# -------------------------------------------------------
+# -------------------------------------------------------
+# eiamCli intuit auth tool
+# -------------------------------------------------------
+RUN wget http://nexus.intuit.net/nexus/content/repositories/IBP.Intuit-Releases/com/intuit/ebs/eiam/eiamCli-linux/2.2.0/eiamCli-linux-2.2.0.zip
+RUN unzip eiamCli-linux-2.2.0.zip
+RUN bash -c "cd eiamCli-linux; chmod a+rx ./install.sh; ./install.sh"
+RUN chmod a+rx /usr/local/bin/eiamCli
+# -------------------------------------------------------
+# agi intuit tools for Agi services
+# -------------------------------------------------------
+RUN wget https://s3-us-west-2.amazonaws.com/agi-intuit-public-artifacts-166747732012-us-west-2/agi/cli/v0.9.3/v0.9.3_agi-cli_linux_amd64.zip
+RUN unzip v0.9.3_agi-cli_linux_amd64.zip
+RUN mv agi /usr/local/bin/
 
 # -------------------------------------------------------
 # -------------------------------------------------------
