@@ -23,6 +23,11 @@ RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
 
 # -----------------------------------
+# lumo for clojurescript https://github.com/anmonteiro/lumo
+# -----------------------------------
+RUN npm install -g lumo-cljs
+
+# -----------------------------------
 # clojure script source mapping support
 # -----------------------------------
 RUN npm install source-map-support
