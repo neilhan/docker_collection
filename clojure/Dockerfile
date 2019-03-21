@@ -23,7 +23,7 @@ RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
 
 # -----------------------------------
-# clojure script
+# clojure script source mapping support
 # -----------------------------------
 RUN npm install source-map-support
 
