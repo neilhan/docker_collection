@@ -25,7 +25,7 @@ RUN apt-get install -y nodejs
 # -----------------------------------
 # lumo for clojurescript https://github.com/anmonteiro/lumo
 # -----------------------------------
-RUN npm install -g lumo-cljs
+RUN npm install -g lumo-cljs --unsafe-perm
 
 # -----------------------------------
 # clojure script source mapping support
