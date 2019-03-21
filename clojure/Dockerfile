@@ -23,7 +23,9 @@ RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
 
 # -----------------------------------
-# lumo for clojurescript https://github.com/anmonteiro/lumo
+# Lumo for clojurescript 
+# https://github.com/anmonteiro/lumo
+# http://lumo-cljs.org/
 # -----------------------------------
 RUN npm install -g lumo-cljs --unsafe-perm
 
