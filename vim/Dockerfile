@@ -7,6 +7,7 @@ RUN apt-get install -y zsh bash apt-utils
 RUN apt-get install -y curl git 
 RUN apt-get install -y build-essential cmake 
 RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev
+RUN apt-get install -y fzf
 
 # -------------------------------------------------------
 # -------------------------------------------------------
