@@ -166,6 +166,8 @@ let vim_markdown_preview_browser='Google Chrome'
 " search by ctrl-p
 Plugin 'kien/ctrlp.vim'
 Plugin 'junegunn/fzf.vim'
+" line complete
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " ack replacing grep
 Plugin 'mileszs/ack.vim'
