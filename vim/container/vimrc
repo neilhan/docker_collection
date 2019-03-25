@@ -173,10 +173,32 @@ Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 
-" search by ctrl-p
-Plugin 'kien/ctrlp.vim'
+" file fuzzy search with fzf
 Plugin 'junegunn/fzf.vim'
+" line complete
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " ack replacing grep
 Plugin 'mileszs/ack.vim'
+
+" Lint syntastic ALE Async Lint Engine
+Plugin 'w0rp/ale'
+" run right after open
+let g:ale_lint_on_enter = 0
+" after save, default when idle 200ms
+" let g:ale_lint_on_text_changed = 'never'
+
+" git related
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+" language packs for vim
+Plugin 'sheerun/vim-polyglot'
+
+" change quote surround: cs"' or cs"<q>
+Plugin 'tpope/vim-surround'
+" allow repeat to cs when .
+Plugin 'tpope/vim-repeat'
+
+" unimpaired
+Plugin 'tpope/vim-unimpaired'
