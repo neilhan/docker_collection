@@ -15,10 +15,8 @@ if [ "$(uname)" == "Darwin" ]; then
         --name dnn_gui_py3 \
         --net=host \
         -u=$UID:$(id -g $USER) \
-        -v $DIR/container:/home/$DOCKER_USER/.vim \
-        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
-        -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
+        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         $docker_common_options_mac \
         dnn_gui_py3 zsh
 else
@@ -31,10 +29,8 @@ else
         --name dnn_gui_py3 \
         --net=host \
         -u=$UID:$(id -g $USER) \
-        -v $DIR/container:/home/$DOCKER_USER/.vim \
-        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
-        -v $DIR/container/gvimrc:/home/$DOCKER_USER/.gvimrc \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
+        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         $docker_common_options \
         dnn_gui_py3 zsh
 fi
