@@ -3,7 +3,8 @@ set ic
 set nocompatible
 set encoding=utf-8
 filetype off
-
+" " enable spell
+" setlocal spell spelllang=en_us
 " default copy to clipboard
 set clipboard+=unnamedplus
 " enable better mouse
@@ -187,6 +188,8 @@ Plugin 'w0rp/ale'
 let g:ale_lint_on_enter = 0
 " after save, default when idle 200ms
 "let g:ale_lint_on_text_changed = 'never'
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
 
 " git related
 Plugin 'airblade/vim-gitgutter'
