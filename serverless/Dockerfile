@@ -3,16 +3,11 @@ MAINTAINER http://neilhan.ca
 
 # Install the appropriate software
 RUN apt-get -y update 
-RUN apt-get install -y zsh bash apt-utils net-tools unzip
-RUN apt-get install -y curl wget build-essential git
+RUN apt-get install -y bash apt-utils net-tools 
+RUN apt-get install -y curl wget git jq unzip
 RUN apt-get install -y build-essential cmake 
 RUN apt-get install -y sudo
 RUN apt-get install -y apt-transport-https ca-certificates software-properties-common
-
-# -------------------------------------
-# to run intellij in this docker image
-# -------------------------------------
-# RUN apt-get install -y openjfx
 
 # -----------------------------------
 # nodejs v11
@@ -30,27 +25,27 @@ RUN npm install -g serverless
 # docker
 RUN apt-get install -y docker.io
 
-RUN apt-get install -y python-pip python-dev build-essential 
-RUN pip install --upgrade pip
+RUN apt-get install -y python3 python3-pip python3-dev
+RUN pip3 install --upgrade pip
 # aws
-RUN pip install --upgrade awscli
+RUN pip3 install --upgrade awscli
 # aws sam
-RUN pip install --upgrade aws-sam-cli
+RUN pip3 install --upgrade aws-sam-cli
 
-# -------------------------------------------------------
-# -------------------------------------------------------
-# eiamCli intuit auth tool
-# -------------------------------------------------------
-RUN wget http://nexus.intuit.net/nexus/content/repositories/IBP.Intuit-Releases/com/intuit/ebs/eiam/eiamCli-linux/2.2.0/eiamCli-linux-2.2.0.zip
-RUN unzip eiamCli-linux-2.2.0.zip
-RUN bash -c "cd eiamCli-linux; chmod a+rx ./install.sh; ./install.sh"
-RUN chmod a+rx /usr/local/bin/eiamCli
-# -------------------------------------------------------
-# agi intuit tools for Agi services
-# -------------------------------------------------------
-RUN wget https://s3-us-west-2.amazonaws.com/agi-intuit-public-artifacts-166747732012-us-west-2/agi/cli/v0.9.3/v0.9.3_agi-cli_linux_amd64.zip
-RUN unzip v0.9.3_agi-cli_linux_amd64.zip
-RUN mv agi /usr/local/bin/
+# # -------------------------------------------------------
+# # -------------------------------------------------------
+# # eiamCli intuit auth tool
+# # -------------------------------------------------------
+# RUN wget http://nexus.intuit.net/nexus/content/repositories/IBP.Intuit-Releases/com/intuit/ebs/eiam/eiamCli-linux/2.2.0/eiamCli-linux-2.2.0.zip
+# RUN unzip eiamCli-linux-2.2.0.zip
+# RUN bash -c "cd eiamCli-linux; chmod a+rx ./install.sh; ./install.sh"
+# RUN chmod a+rx /usr/local/bin/eiamCli
+# # -------------------------------------------------------
+# # agi intuit tools for Agi services
+# # -------------------------------------------------------
+# RUN wget https://s3-us-west-2.amazonaws.com/agi-intuit-public-artifacts-166747732012-us-west-2/agi/cli/v0.9.3/v0.9.3_agi-cli_linux_amd64.zip
+# RUN unzip v0.9.3_agi-cli_linux_amd64.zip
+# RUN mv agi /usr/local/bin/
 
 # -------------------------------------------------------
 # -------------------------------------------------------
@@ -74,5 +69,8 @@ RUN ln -s /bin/sed /usr/bin/sed
 # -------------------------------------------------------
 USER $user
 ENV HOME /home/$user
+
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 CMD ["/bin/bash"]
