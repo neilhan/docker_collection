@@ -6,9 +6,10 @@ DOCKER_USER=sls
 
 mkdir -p $DIR/container/home
 
+# lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
+source $DIR/../lib.sh 
+
 if [ "$(uname)" == "Darwin" ]; then
-    # lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
-    source $DIR/lib.sh 
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by lib.sh
     set_xhost_ip
@@ -37,12 +38,11 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $DIR/container/npm:/home/$DOCKER_USER/.npm \
         -v $DIR/container/config:/home/$DOCKER_USER/.config \
         --workdir=/home/$DOCKER_USER \
-        d_sls $@
+        -e HOME=/home/$DOCKER_USER \
+        d_serverless $@
 
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    # lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
-    source $DIR/lib.sh 
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by lib.sh
     $docker_cmd run --rm -it \
@@ -57,7 +57,9 @@ else
         -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
         -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
+        --workdir=/home/$DOCKER_USER \
+        -e HOME=/home/$DOCKER_USER \
         $docker_common_options \
-        d_sls $@
+        d_serverless $@
 fi
 
