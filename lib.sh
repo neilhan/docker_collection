@@ -36,12 +36,11 @@ export docker_common_options_mac="
         -v /etc/hosts:/etc/hosts:ro 
         -v /dev/shm:/dev/shm 
         --privileged 
-        -e LC_ALL=en_CA.UTF-8
-        -e LANG=en_CA.UTF-8
-        -e LANGUAGE=en_CA.UTF-8
+        -e LC_ALL=C.UTF-8
+        -e LANG=C.UTF-8
+        -e LANGUAGE=C.UTF-8
         --workdir=$HOME 
-	-e HOME=$HOME 
-	-v $HOME:$HOME"
+        -e HOME=$HOME"
 # -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
 
 export docker_common_options="
@@ -60,11 +59,10 @@ export docker_common_options="
         -v /etc/hosts:/etc/hosts:ro 
         -v /dev/shm:/dev/shm 
         --privileged 
-        -e LC_ALL=en_CA.UTF-8
-        -e LANG=en_CA.UTF-8
-        -e LANGUAGE=en_CA.UTF-8
+        -e LC_ALL=C.UTF-8
+        -e LANG=C.UTF-8
+        -e LANGUAGE=C.UTF-8
         --workdir=$HOME 
-	-e HOME=$HOME 
-	-v $HOME:$HOME"
+        -e HOME=$HOME"
 # -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
         # -v $DIR/container/etc_default_locale:/etc/default/locale 

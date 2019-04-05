@@ -53,7 +53,7 @@ RUN pip3 install --upgrade aws-sam-cli
 # -------------------------------------------------------
 ARG host_uid
 ARG host_gid
-ARG user=serverless
+ARG user=sls
 RUN groupadd -g $host_gid -o $user
 RUN echo "$user:x:$host_uid:$host_gid::/home/$user:/usr/bin/zsh" >> /etc/passwd
 # RUN useradd --uid $host_uid --gid $host_gid -m -o -s /bin/zsh $user 

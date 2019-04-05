@@ -1,3 +1,4 @@
 !work_dir
 container/npm
 container/config
+container/home
