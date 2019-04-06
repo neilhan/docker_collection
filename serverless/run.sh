@@ -2,7 +2,7 @@
 
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-DOCKER_USER=sls
+DOCKER_USER=serverless
 
 mkdir -p $DIR/container/home
 
@@ -14,7 +14,7 @@ if [ "$(uname)" == "Darwin" ]; then
     # set_xhost_ip is provided by lib.sh
     set_xhost_ip
     $docker_cmd run --rm -it \
-        --name d_sls \
+        --name d_serverless \
         -v /tmp:/tmp \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
@@ -47,7 +47,7 @@ else
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by lib.sh
     $docker_cmd run --rm -it \
-        --name d_sls \
+        --name d_serverless \
         --net=host \
         -v /tmp:/tmp \
         -v /var/run/docker.sock:/var/run/docker.sock \
