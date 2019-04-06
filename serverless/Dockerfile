@@ -48,7 +48,7 @@ RUN apt-get -y install code # or code-insiders
 # --------------------------------------
 # chrome
 # --------------------------------------
-RUN apt-get install -y chromium-browse
+RUN apt-get install -y chromium-browser
 
 # # -------------------------------------------------------
 # # -------------------------------------------------------
