@@ -6,10 +6,10 @@ echo $DIR/container/vimrc
 ls -l $DIR/container/vimrc
 
 DOCKER_USER=vim
+# lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
+source $DIR/../lib.sh 
 
 if [ "$(uname)" == "Darwin" ]; then
-    # lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
-    source $DIR/../lib.sh 
     # docker_cmd=nvidia-docker, or docker
     # set_xhost_ip is provided by lib.sh
     set_xhost_ip
