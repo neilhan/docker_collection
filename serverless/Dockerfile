@@ -2,10 +2,10 @@ FROM ubuntu:bionic
 MAINTAINER http://neilhan.ca
 
 # Install the appropriate software
-RUN apt-get -y update 
-RUN apt-get install -y bash apt-utils net-tools 
+RUN apt-get -y update
+RUN apt-get install -y bash apt-utils net-tools
 RUN apt-get install -y curl wget git jq unzip
-RUN apt-get install -y build-essential cmake 
+RUN apt-get install -y build-essential cmake
 RUN apt-get install -y sudo
 RUN apt-get install -y apt-transport-https ca-certificates software-properties-common
 
@@ -45,6 +45,11 @@ RUN apt-get -y install apt-transport-https
 RUN apt-get -y update
 RUN apt-get -y install code # or code-insiders
 
+# --------------------------------------
+# chrome
+# --------------------------------------
+RUN apt-get install -y chromium-browse
+
 # # -------------------------------------------------------
 # # -------------------------------------------------------
 # # eiamCli intuit auth tool
@@ -69,7 +74,7 @@ ARG host_gid
 ARG user=serverless
 RUN groupadd -g $host_gid -o $user
 RUN echo "$user:x:$host_uid:$host_gid::/home/$user:/usr/bin/zsh" >> /etc/passwd
-# RUN useradd --uid $host_uid --gid $host_gid -m -o -s /bin/zsh $user 
+# RUN useradd --uid $host_uid --gid $host_gid -m -o -s /bin/zsh $user
 RUN usermod -aG sudo $user
 RUN echo "$user:$user" | chpasswd
 # RUN usermod -aG docker $user

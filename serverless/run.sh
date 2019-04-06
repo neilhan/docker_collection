@@ -24,6 +24,7 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
         -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
+        -v $HOME/Projects:/home/$USER/Projects \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -e DISPLAY=docker.for.mac.localhost:0 \
         --device /dev/shm \
@@ -57,6 +58,7 @@ else
         -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
         -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
+        -v $HOME/Projects:/home/$USER/Projects \
         --workdir=/home/$DOCKER_USER \
         -e HOME=/home/$DOCKER_USER \
         $docker_common_options \
