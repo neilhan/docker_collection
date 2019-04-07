@@ -5,6 +5,11 @@ export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOCKER_USER=serverless
 
 mkdir -p $DIR/container/home
+mkdir -p $DIR/container/vim
+mkdir -p $DIR/container/config/nvim/
+mkdir -p $DIR/container/local
+mkdir -p $DIR/container/cache
+touch $DIR/container/viminfo; chmod a+x $DIR/container/viminfo
 
 # lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
 source $DIR/../lib.sh 
@@ -19,10 +24,25 @@ if [ "$(uname)" == "Darwin" ]; then
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
         -v $DIR/container/home:/home/$DOCKER_USER \
+        -v $DIR/container/home:/home/$USER \
+        -v $DIR/container/config:/home/$DOCKER_USER/.config \
+        -v $DIR/container/config:/home/$USER/.config \
+        -v $DIR/container/local:/home/$DOCKER_USER/.local \
+        -v $DIR/container/local:/home/$USER/.local \
+        -v $DIR/container/cache:/home/$DOCKER_USER/.cache \
+        -v $DIR/container/cache:/home/$USER/.cache \
+        -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
+        -v $DIR/container/zshrc:/home/$USER/.zshrc \
+        -v $DIR/container/spacemacs:/home/$DOCKER_USER/.spacemacs \
+        -v $DIR/container/spacemacs:/home/$USER/.spacemacs \
+        -v $DIR/container/vim:/home/$DOCKER_USER/.vim \
+        -v $DIR/container/vim:/home/$USER/.vim \
+        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
+        -v $DIR/container/vimrc:/home/$USER/.vimrc \
+        -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
+        -v $DIR/container/viminfo:/home/$USER/.viminfo \
         -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
-        -v $HOME/.zshrc:/home/$DOCKER_USER/.zshrc \
-        -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
-        -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
+        -v $HOME/.ssh:/home/$USER/.ssh \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         -v $HOME/Projects:/home/$USER/Projects \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -53,10 +73,25 @@ else
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
         -v $DIR/container/home:/home/$DOCKER_USER \
+        -v $DIR/container/home:/home/$USER \
+        -v $DIR/container/config:/home/$DOCKER_USER/.config \
+        -v $DIR/container/config:/home/$USER/.config \
+        -v $DIR/container/local:/home/$DOCKER_USER/.local \
+        -v $DIR/container/local:/home/$USER/.local \
+        -v $DIR/container/cache:/home/$DOCKER_USER/.cache \
+        -v $DIR/container/cache:/home/$USER/.cache \
+        -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
+        -v $DIR/container/zshrc:/home/$USER/.zshrc \
+        -v $DIR/container/spacemacs:/home/$DOCKER_USER/.spacemacs \
+        -v $DIR/container/spacemacs:/home/$USER/.spacemacs \
+        -v $DIR/container/vim:/home/$DOCKER_USER/.vim \
+        -v $DIR/container/vim:/home/$USER/.vim \
+        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
+        -v $DIR/container/vimrc:/home/$USER/.vimrc \
+        -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
+        -v $DIR/container/viminfo:/home/$USER/.viminfo \
         -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
-        -v $HOME/.zshrc:/home/$DOCKER_USER/.zshrc \
-        -v $HOME/.sharedrc:/home/$DOCKER_USER/.sharedrc \
-        -v $HOME/.m2:/home/$DOCKER_USER/.m2 \
+        -v $HOME/.ssh:/home/$USER/.ssh \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         -v $HOME/Projects:/home/$USER/Projects \
         --workdir=/home/$DOCKER_USER \
