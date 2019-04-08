@@ -45,10 +45,10 @@ RUN apt-get -y install apt-transport-https
 RUN apt-get -y update
 RUN apt-get -y install code # or code-insiders
 
-# --------------------------------------
-# chrome
-# --------------------------------------
-RUN apt-get install -y chromium-browser
+# # --------------------------------------
+# # chrome
+# # --------------------------------------
+# RUN apt-get install -y chromium-browser
 
 # -------------------------------------------------------
 # emacs
