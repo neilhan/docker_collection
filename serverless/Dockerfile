@@ -36,10 +36,10 @@ RUN pip3 install --upgrade aws-sam-cli
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y locales locales-all
 RUN apt-get -y install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
-# -------------------------------------
-# to run intellij in this docker image
-# -------------------------------------
-RUN apt-get install -y openjfx
+# # -------------------------------------
+# # to run intellij in this docker image
+# # -------------------------------------
+# RUN apt-get install -y openjfx
 
 # vscode ----------------------------
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -49,15 +49,15 @@ RUN apt-get -y install apt-transport-https
 RUN apt-get -y update
 RUN apt-get -y install code # or code-insiders
 
-# # --------------------------------------
-# # chrome
-# # --------------------------------------
-# RUN apt-get install -y chromium-browser
+# --------------------------------------
+# chrome
+# --------------------------------------
+RUN apt-get install -y chromium-browser
 
-# -------------------------------------------------------
-# emacs
-# -------------------------------------------------------
-RUN apt-get install -y emacs
+# # -------------------------------------------------------
+# # emacs
+# # -------------------------------------------------------
+# RUN apt-get install -y emacs aspell
 
 # # -------------------------------------------------------
 # # -------------------------------------------------------
