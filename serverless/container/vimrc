@@ -5,6 +5,8 @@ set encoding=utf-8
 filetype off
 " " enable spell
 " setlocal spell spelllang=en_us
+" " zg will add the word
+set spellfile=$HOME/.vim/myspellfile.add
 " default copy to clipboard
 set clipboard+=unnamedplus
 " enable better mouse
@@ -111,9 +113,6 @@ endfunction
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-" debugger
-Bundle 'idanarye/vim-vebugger'
-
 " enable folding, <za>
 set foldmethod=indent
 set foldlevel=99
@@ -174,7 +173,7 @@ Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 
-" file fuzzy search with fzf
+" file fuzzy search with fzf, Files, Buff, c-x, c-l
 Plugin 'junegunn/fzf.vim'
 " line complete
 imap <c-x><c-l> <plug>(fzf-complete-line)
@@ -205,3 +204,12 @@ Plugin 'tpope/vim-repeat'
 
 " unimpaired
 Plugin 'tpope/vim-unimpaired'
+" comment, gcc, gc5j,
+Plugin 'vim-scripts/tComment' "Comment easily with gcc
+
+" debugging related
+" -------------------------------
+" Vebugger requires vimproc plugin
+Plugin 'Shougo/vimproc.vim'
+" debugger, support gdb, lldb, jdb, mdbg, pdb, rdebug, Node Ninspect
+Plugin 'idanarye/vim-vebugger'

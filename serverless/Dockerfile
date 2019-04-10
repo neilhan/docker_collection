@@ -3,11 +3,20 @@ MAINTAINER http://neilhan.ca
 
 # Install the appropriate software
 RUN apt-get -y update
-RUN apt-get install -y bash zsh apt-utils net-tools
+RUN apt-get install -y bash zsh apt-utils net-tools sudo
 RUN apt-get install -y curl wget git jq unzip
 RUN apt-get install -y build-essential cmake
-RUN apt-get install -y sudo
 RUN apt-get install -y apt-transport-https ca-certificates software-properties-common
+
+# -------------------------------------------------------
+# vim neovim
+# -------------------------------------------------------
+RUN apt-get install -y curl git wget
+RUN apt-get install -y build-essential cmake 
+RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev
+# install fzf
+RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+RUN ~/.fzf/install
 
 # -----------------------------------
 # nodejs v11
@@ -49,10 +58,10 @@ RUN apt-get -y install apt-transport-https
 RUN apt-get -y update
 RUN apt-get -y install code # or code-insiders
 
-# --------------------------------------
-# chrome
-# --------------------------------------
-RUN apt-get install -y chromium-browser
+# # --------------------------------------
+# # chrome
+# # --------------------------------------
+# RUN apt-get install -y chromium-browser
 
 # # -------------------------------------------------------
 # # emacs

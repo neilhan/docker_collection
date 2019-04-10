@@ -4,6 +4,10 @@ MAINTAINER http://neilhan.ca
 # Install the appropriate software
 RUN apt-get -y update 
 RUN apt-get install -y zsh bash apt-utils sudo
+
+# -------------------------------------------------------
+# neovim
+# -------------------------------------------------------
 RUN apt-get install -y curl git wget
 RUN apt-get install -y build-essential cmake 
 RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev

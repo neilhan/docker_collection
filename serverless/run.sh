@@ -3,6 +3,8 @@
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 DOCKER_USER=serverless
+# lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
+source $DIR/../lib.sh 
 
 mkdir -p $DIR/container/home
 mkdir -p $DIR/container/vim
@@ -11,8 +13,6 @@ mkdir -p $DIR/container/local
 mkdir -p $DIR/container/cache
 touch $DIR/container/viminfo; chmod a+x $DIR/container/viminfo
 
-# lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
-source $DIR/../lib.sh 
 
 if [ "$(uname)" == "Darwin" ]; then
     # docker_cmd=nvidia-docker, or docker
