@@ -5,6 +5,8 @@ set encoding=utf-8
 filetype off
 " " enable spell
 " setlocal spell spelllang=en_us
+" " zg will add the word
+set spellfile=$HOME/.vim/myspellfile.add
 " default copy to clipboard
 set clipboard+=unnamedplus
 " enable better mouse
@@ -205,3 +207,5 @@ Plugin 'tpope/vim-repeat'
 
 " unimpaired
 Plugin 'tpope/vim-unimpaired'
+" comment, gcc, gc5j,
+Plugin 'vim-scripts/tComment' "Comment easily with gcc
