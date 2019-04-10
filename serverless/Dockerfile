@@ -13,10 +13,11 @@ RUN apt-get install -y apt-transport-https ca-certificates software-properties-c
 # -------------------------------------------------------
 RUN apt-get install -y curl git wget
 RUN apt-get install -y build-essential cmake 
-RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev
-# install fzf
-RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-RUN ~/.fzf/install
+RUN apt-get install -y vim
+# RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev
+# # install fzf
+# RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+# RUN ~/.fzf/install
 
 # -----------------------------------
 # nodejs v11
@@ -64,11 +65,6 @@ RUN apt-get -y install code # or code-insiders
 # RUN apt-get install -y chromium-browser
 
 # # -------------------------------------------------------
-# # emacs
-# # -------------------------------------------------------
-# RUN apt-get install -y emacs aspell
-
-# # -------------------------------------------------------
 # # -------------------------------------------------------
 # # eiamCli intuit auth tool
 # # -------------------------------------------------------
@@ -83,6 +79,11 @@ RUN apt-get -y install code # or code-insiders
 # RUN unzip v0.9.3_agi-cli_linux_amd64.zip
 # RUN mv agi /usr/local/bin/
 
+# # -------------------------------------------------------
+# # emacs, spacemacs
+# # -------------------------------------------------------
+# RUN apt-get install -y emacs aspell
+
 # -------------------------------------------------------
 # -------------------------------------------------------
 # create user
@@ -96,15 +97,17 @@ RUN echo "$user:x:$host_uid:$host_gid::/home/$user:/usr/bin/zsh" >> /etc/passwd
 RUN usermod -aG sudo $user
 RUN echo "$user:$user" | chpasswd
 # RUN usermod -aG docker $user
-
 # --------------------------------------------------------
 # for mac home directory
 RUN ln -s /home /Users
 RUN ln -s /bin/sed /usr/bin/sed
-
 # -------------------------------------------------------
 USER $user
 ENV HOME /home/$user
+
+# -------------------------------------------------------
+# emacs, spacemacs
+# -------------------------------------------------------
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8

@@ -7,11 +7,8 @@ DOCKER_USER=serverless
 source $DIR/../lib.sh 
 
 mkdir -p $DIR/container/home
-mkdir -p $DIR/container/vim
-mkdir -p $DIR/container/config/nvim/
 mkdir -p $DIR/container/local
 mkdir -p $DIR/container/cache
-touch $DIR/container/viminfo; chmod a+x $DIR/container/viminfo
 
 
 if [ "$(uname)" == "Darwin" ]; then
@@ -33,14 +30,6 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $DIR/container/cache:/home/$USER/.cache \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
         -v $DIR/container/zshrc:/home/$USER/.zshrc \
-        -v $DIR/container/spacemacs:/home/$DOCKER_USER/.spacemacs \
-        -v $DIR/container/spacemacs:/home/$USER/.spacemacs \
-        -v $DIR/container/vim:/home/$DOCKER_USER/.vim \
-        -v $DIR/container/vim:/home/$USER/.vim \
-        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
-        -v $DIR/container/vimrc:/home/$USER/.vimrc \
-        -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
-        -v $DIR/container/viminfo:/home/$USER/.viminfo \
         -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
         -v $HOME/.ssh:/home/$USER/.ssh \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
@@ -82,14 +71,6 @@ else
         -v $DIR/container/cache:/home/$USER/.cache \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
         -v $DIR/container/zshrc:/home/$USER/.zshrc \
-        -v $DIR/container/spacemacs:/home/$DOCKER_USER/.spacemacs \
-        -v $DIR/container/spacemacs:/home/$USER/.spacemacs \
-        -v $DIR/container/vim:/home/$DOCKER_USER/.vim \
-        -v $DIR/container/vim:/home/$USER/.vim \
-        -v $DIR/container/vimrc:/home/$DOCKER_USER/.vimrc \
-        -v $DIR/container/vimrc:/home/$USER/.vimrc \
-        -v $DIR/container/viminfo:/home/$DOCKER_USER/.viminfo \
-        -v $DIR/container/viminfo:/home/$USER/.viminfo \
         -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
         -v $HOME/.ssh:/home/$USER/.ssh \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
