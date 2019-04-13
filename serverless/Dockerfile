@@ -84,10 +84,11 @@ RUN apt-get -y install code # or code-insiders
 # -------------------------------------------------------
 RUN apt-get install -y emacs aspell ack silversearcher-ag
 RUN npm install -g js-beautify
-RUN npm install -g eslint
+RUN npm install -g eslint eslint-plugin-jest
 # RUN npm install -g jshint
 RUN npm install -g tern
 RUN npm install -g jsonlint
+RUN npm install -g standard
 
 # -------------------------------------------------------
 # -------------------------------------------------------
