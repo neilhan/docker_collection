@@ -313,7 +313,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   (setq multi-term-program "/usr/bin/zsh")
   (define-key input-decode-map [?\C-i] [C-i])
-  (define-key input-decode-map [?\C-m] [C-m])
+  (when (display-graphic-p)
+    (define-key input-decode-map [?\C-m] [C-m]))
   ;; (define-key input-decode-map "\C-i" [C-i])
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
