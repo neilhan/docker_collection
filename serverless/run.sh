@@ -43,10 +43,8 @@ if [ "$(uname)" == "Darwin" ]; then
         -v /etc/hosts:/etc/hosts:ro \
         -v /dev/shm:/dev/shm \
         --privileged \
-        -v $DIR/container/local:/home/$DOCKER_USER/.local \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
-        -v $DIR/container/npm:/home/$DOCKER_USER/.npm \
-        -v $DIR/container/config:/home/$DOCKER_USER/.config \
+        -v $HOME/Projects:/home/$USER/Projects \
         --workdir=/home/$DOCKER_USER \
         -e HOME=/home/$DOCKER_USER \
         d_serverless $@

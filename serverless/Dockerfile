@@ -13,7 +13,7 @@ RUN apt-get install -y apt-transport-https ca-certificates software-properties-c
 # -------------------------------------------------------
 RUN apt-get install -y curl git wget
 RUN apt-get install -y build-essential cmake
-RUN apt-get install -y vim vim-gtk
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim vim-gtk
 RUN apt-get install -y xclip xsel ack
 # RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev
 # # install fzf
