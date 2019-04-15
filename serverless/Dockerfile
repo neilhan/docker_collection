@@ -12,8 +12,9 @@ RUN apt-get install -y apt-transport-https ca-certificates software-properties-c
 # vim neovim
 # -------------------------------------------------------
 RUN apt-get install -y curl git wget
-RUN apt-get install -y build-essential cmake 
-RUN apt-get install -y vim
+RUN apt-get install -y build-essential cmake
+RUN apt-get install -y vim vim-gtk
+RUN apt-get install -y xclip xsel ack
 # RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev
 # # install fzf
 # RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -83,6 +84,7 @@ RUN apt-get -y install code # or code-insiders
 # emacs, spacemacs
 # -------------------------------------------------------
 RUN apt-get install -y emacs aspell ack silversearcher-ag
+RUN apt-get install -y xclip xsel ack
 RUN npm install -g js-beautify
 RUN npm install -g eslint eslint-plugin-jest
 # RUN npm install -g jshint
