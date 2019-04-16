@@ -322,7 +322,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; (define-key input-decode-map "\C-i" [C-i])
   (setq-default js2-basic-offset 4)
   (setq-default js-indent-level 4)
-  (setq-default helm-ag-use-agignore t)
   (xclip-mode 1)
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
