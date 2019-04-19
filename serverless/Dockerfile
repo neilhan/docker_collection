@@ -38,6 +38,8 @@ RUN apt-get install -y docker.io
 
 RUN apt-get install -y python3 python3-pip python3-dev
 RUN pip3 install --upgrade pip
+RUN pip3 install numpy matplotlib
+RUN apt install -y python3-tk
 # aws
 RUN pip3 install --upgrade awscli
 # aws sam
@@ -91,6 +93,11 @@ RUN npm install -g eslint eslint-plugin-jest
 RUN npm install -g tern
 RUN npm install -g jsonlint
 RUN npm install -g standard
+
+# -------------------------------------------------------
+# clojure lumo, shadow-cljs
+# -------------------------------------------------------
+RUN npm install -g lumo-cljs --unsafe-perm
 
 # -------------------------------------------------------
 # -------------------------------------------------------
