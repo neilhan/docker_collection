@@ -21,29 +21,29 @@ RUN apt-get install -y xclip xsel ack
 # RUN ~/.fzf/install
 
 # -----------------------------------
+# python needed for machine learning
+# -----------------------------------
+RUN apt-get install -y python3 python3-pip python3-dev python3-tk python3-venv
+RUN pip3 install --upgrade pip
+RUN pip3 install pudb numpy matplotlib
+
+# -----------------------------------
 # nodejs v11
 # -----------------------------------
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
 
 # -----------------------------------
-# aws, serverless
-RUN npm install -g serverless
-
-# -----------------------------------
-# aws  sam needs docker
+# aws, sam, serverless, aws-sam needs docker
 # -----------------------------
 # docker
 RUN apt-get install -y docker.io
-
-RUN apt-get install -y python3 python3-pip python3-dev
-RUN pip3 install --upgrade pip
-RUN pip3 install numpy matplotlib
-RUN apt install -y python3-tk
 # aws
 RUN pip3 install --upgrade awscli
 # aws sam
 RUN pip3 install --upgrade aws-sam-cli
+# aws, serverless
+RUN npm install -g serverless
 
 # gui support -----------------------
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module
@@ -92,7 +92,7 @@ RUN npm install -g eslint eslint-plugin-jest tern jsonlint standard
 # RUN npm install -g jshint
 
 # -------------------------------------------------------
-# clojure lumo, shadow-cljs
+# clojurescript lumo
 # -------------------------------------------------------
 RUN npm install -g lumo-cljs --unsafe-perm
 
