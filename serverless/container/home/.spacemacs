@@ -136,10 +136,10 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         hc-zenburn
-                         spacemacs-dark
-                         hemisu-dark
+                         wheatgrass
                          moe-dark
+                         hemisu-dark
+                         spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
