@@ -32,6 +32,7 @@ RUN apt-get install -y nodejs
 # -------------------------------------------------------
 # vim neovim
 # -------------------------------------------------------
+# RUN apt-get install -y wget git build-essential cmake
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim vim-gtk
 RUN apt-get install -y xclip xsel ack
 # RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev
@@ -42,8 +43,8 @@ RUN apt-get install -y xclip xsel ack
 # -------------------------------------------------------
 # emacs, spacemacs
 # -------------------------------------------------------
+# RUN apt-get install -y xclip xsel ack
 RUN apt-get install -y emacs aspell ack silversearcher-ag
-RUN apt-get install -y xclip xsel ack
 RUN npm install -g js-beautify
 RUN npm install -g eslint eslint-plugin-jest tern jsonlint standard
 # RUN npm install -g jshint
