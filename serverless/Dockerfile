@@ -16,7 +16,7 @@ RUN apt-get -y install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libc
 # -----------------------------------
 # python needed for machine learning
 # -----------------------------------
-RUN apt-get install -y python3 python3-pip python3-dev python3-tk python3-venv
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip python3-dev python3-tk python3-venv
 RUN pip3 install --upgrade pip
 RUN pip3 install pudb numpy matplotlib
 RUN apt-get install -y python-opengl
@@ -32,8 +32,6 @@ RUN apt-get install -y nodejs
 # -------------------------------------------------------
 # vim neovim
 # -------------------------------------------------------
-RUN apt-get install -y curl git wget
-RUN apt-get install -y build-essential cmake
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim vim-gtk
 RUN apt-get install -y xclip xsel ack
 # RUN apt-get install -y neovim ctags python python-neovim python3-neovim xclip xsel markdown ack perl python-dev
