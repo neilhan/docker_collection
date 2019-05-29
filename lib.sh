@@ -16,9 +16,12 @@ function set_xhost_ip {
 
 docker_cmd=$(which nvidia-docker)
 if [ -f $docker_cmd ]; then
+    docker_cmd=$(which nvidia-docker)
+else
     docker_cmd=$(which docker)
 fi
 export docker_cmd=$docker_cmd
+echo docker command: $docker_cmd
 
 export docker_common_options_mac="
         -v /tmp/.X11-unix:/tmp/.X11-unix 
