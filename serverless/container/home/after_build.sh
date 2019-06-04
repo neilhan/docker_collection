@@ -7,7 +7,7 @@ cd $DIR
 # mkdir -p container/home/Projects
 
 # # install spaceVim
-# curl -sLf https://spacevim.org/install.sh | bash 
+# curl -sLf https://spacevim.org/install.sh | bash
 
 # checkout spacemacs
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
@@ -21,5 +21,7 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 # cd bin
 # idea_dir=$(ls -d idea-IU-*)
 # ln -s $idea_dir idea
- 
+
 cd $DIR
+
+~/install_adobe_fonts.sh

@@ -3,6 +3,7 @@ MAINTAINER http://neilhan.ca
 
 # Install the appropriate software
 RUN apt-get -y update
+RUN apt-get -y upgrade
 RUN apt-get install -y bash zsh apt-utils net-tools sudo
 RUN apt-get install -y curl wget git jq unzip
 RUN apt-get install -y build-essential cmake
@@ -49,10 +50,10 @@ RUN npm install -g js-beautify
 RUN npm install -g eslint eslint-plugin-jest tern jsonlint standard
 # RUN npm install -g jshint
 
-# # -------------------------------------
-# # to run intellij in this docker image
-# # -------------------------------------
-# RUN apt-get install -y openjfx
+# -------------------------------------
+# to run intellij in this docker image
+# -------------------------------------
+RUN apt-get install -y openjfx
 
 # vscode ----------------------------
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -84,10 +85,10 @@ RUN npm install -g heroku
 # -------------------------------------------------------
 RUN npm install -g lumo-cljs --unsafe-perm
 
-# # --------------------------------------
-# # chrome
-# # --------------------------------------
-# RUN apt-get install -y chromium-browser
+# --------------------------------------
+# chrome
+# --------------------------------------
+RUN apt-get install -y chromium-browser
 
 # # -------------------------------------------------------
 # # -------------------------------------------------------
