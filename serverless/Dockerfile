@@ -30,6 +30,18 @@ RUN pip3 install gym[atari]
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
 
+# -----------------------------------
+# Lumo for clojurescript 
+# https://github.com/anmonteiro/lumo
+# http://lumo-cljs.org/
+# -----------------------------------
+RUN npm install -g lumo-cljs --unsafe-perm
+
+# -----------------------------------
+# clojure script source mapping support
+# -----------------------------------
+RUN npm install -g source-map-support
+
 # -------------------------------------------------------
 # vim neovim
 # -------------------------------------------------------
