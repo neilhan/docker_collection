@@ -309,6 +309,7 @@ values."
 
 (defun dotspacemacs/user-init ()
   (setq js2-include-node-externs t)
+  (setq js2-strict-missing-semi-warning nil)
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration
 executes.
