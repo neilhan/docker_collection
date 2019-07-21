@@ -15,9 +15,11 @@ function set_xhost_ip {
 }
 
 docker_cmd=$(which nvidia-docker)
-if [ -f $docker_cmd ]; then
+if [[ -n "$docker_cmd" ]]; then
+    echo set docker_cmd to nvidia-docker
     docker_cmd=$(which nvidia-docker)
 else
+    echo set docker_cmd to docker
     docker_cmd=$(which docker)
 fi
 export docker_cmd=$docker_cmd
@@ -32,10 +34,9 @@ export docker_common_options_mac="
         --device /dev/video0 
         --device /dev/input 
         -v /dev/dri:/dev/dri 
-        -v /dev/snd:/dev/snd 
-        -v /dev/shm:/dev/shm 
-        -v /dev/video0:/dev/video0 
-        -v $DIR/container/timezone:/etc/timezone 
+        -v /dev/snd:/dev/snd
+        -v /dev/shm:/dev/shm
+        -v /dev/video0:/dev/video0
         -v /etc/hosts:/etc/hosts:ro 
         -v /dev/shm:/dev/shm 
         --privileged 
@@ -43,6 +44,7 @@ export docker_common_options_mac="
         -e LANG=C.UTF-8
         -e LANGUAGE=C.UTF-8"
 # -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro 
+# -v $DIR/container/timezone:/etc/timezone
 
 export docker_common_options="
         -v /tmp/.X11-unix:/tmp/.X11-unix 

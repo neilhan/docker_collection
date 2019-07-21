@@ -1,10 +1,11 @@
 #!/bin/bash
 
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo DIR=$DIR
 
 DOCKER_USER=serverless
-# lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options 
-source $DIR/../lib.sh 
+# lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options
+source $DIR/../lib.sh
 
 mkdir -p $DIR/container/home
 mkdir -p $DIR/container/local
@@ -39,7 +40,6 @@ if [ "$(uname)" == "Darwin" ]; then
         --device /dev/shm \
         --device /dev/input \
         -v /dev/shm:/dev/shm \
-        -v $DIR/container/timezone:/etc/timezone \
         -v /etc/hosts:/etc/hosts:ro \
         -v /dev/shm:/dev/shm \
         --privileged \
