@@ -1,3 +1,4 @@
 #!/bin/bash
-# docker build --rm -t d_gui .
-docker-compose build
+docker build -t gui .
+docker tag gui cgineilhan/gui
+docker push cgineilhan/gui:latest
