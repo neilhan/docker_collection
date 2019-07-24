@@ -17,7 +17,7 @@ RUN apt-get -y install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libc
 # -----------------------------------
 # node.js v11, install node.js
 # -----------------------------------
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install -g yarn
 

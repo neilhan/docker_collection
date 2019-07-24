@@ -41,6 +41,13 @@ RUN npm install -g serverless
 # --------------------------------------
 RUN npm install -g heroku
 
+# --------------------------------------
+# 32 bits support
+# --------------------------------------
+RUN dpkg --add-architecture i386
+RUN apt-get update
+RUN apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
+
 # -------------------------------------------------------
 # -------------------------------------------------------
 # create user
@@ -49,11 +56,12 @@ ARG host_uid
 ARG host_gid
 ARG user=serverless
 RUN groupadd -g $host_gid -o $user
+# RUN groupadd docker
 RUN echo "$user:x:$host_uid:$host_gid::/home/$user:/usr/bin/zsh" >> /etc/passwd
 # RUN useradd --uid $host_uid --gid $host_gid -m -o -s /bin/zsh $user
 RUN usermod -aG sudo $user
+RUN usermod -aG docker $user
 RUN echo "$user:$user" | chpasswd
-# RUN usermod -aG docker $user
 # --------------------------------------------------------
 # for mac home directory
 RUN ln -s /home /Users
