@@ -5,7 +5,7 @@ MAINTAINER http://neilhan.ca
 RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get install -y bash zsh apt-utils net-tools sudo
-RUN apt-get install -y curl wget git jq unzip
+RUN apt-get install -y curl wget git jq unzip tmux
 RUN apt-get install -y build-essential cmake
 RUN apt-get install -y apt-transport-https ca-certificates software-properties-common
 
