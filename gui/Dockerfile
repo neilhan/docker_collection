@@ -1,4 +1,5 @@
-FROM ubuntu:rolling
+# FROM ubuntu:rolling
+FROM debian:latest
 MAINTAINER http://neilhan.ca
 
 # Install the appropriate software
@@ -56,4 +57,4 @@ RUN npm install -g eslint eslint-plugin-jest tern jsonlint standard
 # --------------------------------------
 # chrome
 # --------------------------------------
-RUN apt-get install -y chromium-browser
+RUN apt-get install -y chromium

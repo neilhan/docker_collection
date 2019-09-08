@@ -4,10 +4,10 @@ MAINTAINER http://neilhan.ca
 # -----------------------------------
 # python needed for machine learning
 # -----------------------------------
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip python3-dev python3-tk python3-venv
+RUN DEBIAN_FRONTEND=noninteractive apt install -y python3 python3-pip python3-dev python3-tk python3-venv
 RUN pip3 install --upgrade pip
 RUN pip3 install pudb numpy matplotlib
-RUN apt-get install -y python-opengl
+RUN apt install -y python-opengl
 RUN pip3 install gym
 RUN pip3 install gym[atari]
 
@@ -15,20 +15,20 @@ RUN pip3 install gym[atari]
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 RUN install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-RUN apt-get -y install apt-transport-https
-RUN apt-get -y update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install code # or code-insiders
+RUN apt -y install apt-transport-https
+RUN apt -y update
+RUN DEBIAN_FRONTEND=noninteractive apt -y install code # or code-insiders
 
 # -------------------------------------
 # to run intellij in this docker image
 # -------------------------------------
-RUN apt-get install -y openjfx
+RUN apt install -y openjfx
 
 # -----------------------------------
 # aws, sam, serverless, aws-sam needs docker
 # -----------------------------
 # docker
-RUN apt-get install -y docker.io
+RUN apt install -y docker.io
 # aws
 RUN pip3 install --upgrade awscli
 # aws sam
@@ -37,22 +37,17 @@ RUN pip3 install --upgrade aws-sam-cli
 RUN npm install -g serverless
 
 # --------------------------------------
-# heroku cli install. Requires node.js
-# --------------------------------------
-RUN npm install -g heroku
-
-# --------------------------------------
 # 32 bits support
 # --------------------------------------
 RUN dpkg --add-architecture i386
-RUN apt-get update
-RUN apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
+RUN apt update
+RUN apt install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # --------------------------------------
 # java support
 # --------------------------------------
-RUN apt-get install -y openjdk-8-jdk
-RUN apt-get install -y maven
+RUN apt install -y openjdk-11-jdk
+RUN apt install -y maven
 # -------------------------------------------------------
 # -------------------------------------------------------
 # create user
