@@ -26,7 +26,6 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $DIR/container/local:/home/$DOCKER_USER/.local \
         -v $DIR/container/cache:/home/$DOCKER_USER/.cache \
         -v $DIR/container/zshrc:/home/$DOCKER_USER/.zshrc \
-        -v $HOME/.spacemacs:/home/$DOCKER_USER/.spacemacs \
         -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
