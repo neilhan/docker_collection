@@ -29,7 +29,7 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        -e DISPLAY=docker.for.mac.localhost:0 \
+        -e DISPLAY=docker.for.mac.host.internal:0 \
         --device /dev/shm \
         --device /dev/input \
         -v /dev/shm:/dev/shm \
