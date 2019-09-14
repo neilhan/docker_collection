@@ -19,7 +19,7 @@ RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
       install -d -m 0755 -o ${USER_NAME} -g ${GROUP_NAME} /home/${USER_NAME} &&\
       chown --changes --silent --no-dereference --recursive \
         --from=1000:1000 ${USER_ID}:${GROUP_ID} \
-        /home/${USER_NAME} \
+        /home/${USER_NAME} && \
       echo "${USER_NAME}:${USER_NAME}" | chpasswd \
   ;fi
 
