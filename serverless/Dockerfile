@@ -18,7 +18,6 @@ RUN apt-get update && apt-get -y upgrade
 # RUN pip3 install --upgrade awscli
 # # aws sam
 # RUN pip3 install --upgrade aws-sam-cli
-# # aws, serverless
 # RUN npm install -g serverless
 
 # --------------------------------------
