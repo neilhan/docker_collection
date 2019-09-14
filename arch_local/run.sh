@@ -3,7 +3,8 @@
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo DIR=$DIR
 
-DOCKER_USER=$USER
+# DOCKER_USER=$USER
+DOCKER_USER=appuser
 # lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options
 source $DIR/../lib.sh
 
@@ -27,7 +28,8 @@ if [ "$(uname)" == "Darwin" ]; then
                 -e DISPLAY=docker.for.mac.host.internal:0 \
                 --device /dev/shm \
                 --device /dev/input \
-                -v /dev/shm:/dev/shm \
+        -v $DIR/container/home:/home/$DOCKER_USER \
+        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
                 --privileged \
                 arch_local $@
 else
