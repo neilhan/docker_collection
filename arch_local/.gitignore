@@ -1,0 +1,5 @@
+!work_dir
+!**/install_adobe_fonts.sh
+container/npm
+container/config
+container/home
