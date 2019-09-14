@@ -28,7 +28,7 @@ RUN npm install -g yarn
 RUN npm install -g lumo-cljs --unsafe-perm
 
 # -----------------------------------
-# clojure script source mapping support
+# clojurescript source mapping support
 # -----------------------------------
 RUN npm install -g source-map-support
 
