@@ -23,15 +23,15 @@ if [ "$(uname)" == "Darwin" ]; then
     # set_xhost_ip is provided by lib.sh
     set_xhost_ip
     $docker_cmd run --rm -it \
-                --name arch \
-                -v /tmp/.X11-unix:/tmp/.X11-unix \
-                -e DISPLAY=docker.for.mac.host.internal:0 \
-                --device /dev/shm \
-                --device /dev/input \
+        --name arch \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=docker.for.mac.host.internal:0 \
+        --device /dev/shm \
+        --device /dev/input \
         -v $DIR/container/home:/home/$DOCKER_USER \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
-                --privileged \
-                arch_local $@
+        --privileged \
+        arch_local $@
 else
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # docker_cmd=nvidia-docker, or docker

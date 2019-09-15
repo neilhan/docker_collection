@@ -4,9 +4,9 @@ FROM archlinux/base
 
 RUN pacman -Sy --noconfirm chromium
 RUN pacman -Sy --noconfirm coreutils tar less findutils diffutils grep sed gawk util-linux procps-ng
-RUN pacman -Sy --noconfirm git zsh sudo curl wget tmux unzip base-devel
+RUN pacman -Sy --noconfirm git zsh sudo curl wget tmux unzip base-devel openssh
 RUN pacman -Sy --noconfirm adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts
-RUN pacman -Sy --noconfirm vim emacs aspell ack # silversearch-ag is installed after creating user
+RUN pacman -Sy --noconfirm vim emacs aspell aspell-en ack # silversearch-ag is installed after creating user
 RUN pacman -Sy --noconfirm nodejs npm
 RUN npm install -g yarn
 RUN npm install -g js-beautify
