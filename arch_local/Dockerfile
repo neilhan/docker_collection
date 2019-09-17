@@ -24,3 +24,5 @@ RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
   ;fi
 
 USER ${USER_NAME}
+
+CMD zsh

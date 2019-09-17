@@ -39,6 +39,10 @@ RUN groupadd -g $host_gid -o $user &&\
     useradd --uid $host_uid --gid $host_gid -G wheel,$user -m -o -s /bin/zsh $user &&\
     echo "$user:$user" | chpasswd &&\
     echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN echo "[multilib]" >> /etc/pacman.conf
+RUN echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+RUN pacman -Syu --noconfirm
+
 # RUN echo "$user ALL=(ALL) ALL" >> /etc/sudoers
 # --------------------------------------------------------
 # for mac home directory
@@ -52,7 +56,7 @@ RUN git clone https://aur.archlinux.org/yay.git && \
   echo $user | makepkg -si --noconfirm
 
 # install ag for emacs search
-RUN yay -Syu the_silver_searcher --noconfirm
+RUN yay -Syu --noconfirm the_silver_searcher
 
 # -----------------------------------
 # python needed for machine learning
@@ -64,3 +68,8 @@ RUN pip3 install --upgrade pip
 RUN pip3 install pudb numpy matplotlib
 RUN pip3 install gym
 RUN pip3 install gym[atari]
+
+# ----------------------------------
+# 32 bit app support
+# ---------------------------------
+RUN yay -Sy --noconfirm lib32-glibc lib32-ncurses lib32-libstdc++5
