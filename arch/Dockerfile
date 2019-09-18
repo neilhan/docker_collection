@@ -72,4 +72,6 @@ RUN pip3 install gym[atari]
 # ----------------------------------
 # 32 bit app support
 # ---------------------------------
+USER appuser
 RUN yay -Sy --noconfirm lib32-glibc lib32-ncurses lib32-libstdc++5
+USER root

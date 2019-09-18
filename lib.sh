@@ -26,7 +26,7 @@ export docker_cmd=$docker_cmd
 echo docker command: $docker_cmd
 
 export docker_common_options_mac="
-        -v /tmp/.X11-unix:/tmp/.X11-unix
+        -v /tmp/.X11-unix:/tmp/.X11-unix:rw
         -e DISPLAY=docker.for.mac.host.internal:0
         --device /dev/dri
         --device /dev/snd
@@ -46,7 +46,7 @@ export docker_common_options_mac="
 # -v $DIR/container/timezone:/etc/timezone
 
 export docker_common_options="
-        -v /tmp/.X11-unix:/tmp/.X11-unix
+        -v /tmp/.X11-unix:/tmp/.X11-unix:rw
         -e DISPLAY=unix$DISPLAY
         --device /dev/dri
         --device /dev/snd
@@ -59,7 +59,6 @@ export docker_common_options="
         -v /dev/video0:/dev/video0
         -v /etc/localtime:/etc/localtime:ro
         -v /etc/hosts:/etc/hosts:ro
-        -v /dev/shm:/dev/shm
         --privileged
         -e LC_ALL=C.UTF-8
         -e LANG=C.UTF-8
