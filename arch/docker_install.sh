@@ -24,7 +24,7 @@ echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 pacman -Sy --noconfirm grub efibootmgr os-prober dosfstools mtools reflector
 pacman -Sy --noconfirm coreutils tar less findutils diffutils grep sed gawk util-linux procps-ng
-pacman -Sy --noconfirm git zsh sudo curl wget tmux unzip base-devel openssh make
+pacman -Sy --noconfirm git zsh sudo curl wget tmux unzip base-devel openssh make htop
 pacman -Sy --noconfirm adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts
 pacman -Sy --noconfirm vim emacs aspell aspell-en ack # silversearch-ag is installed after creating user
 pacman -Sy --noconfirm nodejs npm
