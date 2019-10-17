@@ -1,0 +1,4 @@
+data_db
+!work_dir
+container/npm
+container/config
