@@ -16,6 +16,7 @@ RUN groupadd -g $host_gid -o $user &&\
     echo "$user:$user" | chpasswd &&\
     echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+# major work is done here
 COPY docker_install.sh /root/docker_install.sh
 RUN /root/docker_install.sh
 
