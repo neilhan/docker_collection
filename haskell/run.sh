@@ -44,8 +44,6 @@ if [ "$(uname)" == "Darwin" ]; then
         -v $HOME/Projects:/home/$USER/Projects \
         --workdir=/home/$DOCKER_USER \
         -e HOME=/home/$DOCKER_USER \
-        -p 8000:8000 \
-        -p 3000:3000 \
         d_haskell $@
 
 else
