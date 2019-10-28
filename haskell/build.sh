@@ -9,4 +9,9 @@ if [ "$build_new" = "new" ]; then
     opt="--no-cache"
 fi
 
-docker build --build-arg host_uid=$(id -u) --build-arg host_gid=$(id -g) -t d_haskell $opt .
+docker build \
+       --build-arg USER_NAME=appuser \
+       --build-arg USER_ID=$(id -u) \
+       --build-arg GROUP_NAME=appuser \
+       --build-arg GROUP_ID=$(id -g) \
+       -t d_haskell $opt .

@@ -3,13 +3,15 @@
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo DIR=$DIR
 
-DOCKER_USER=haskell
+DOCKER_USER=appuser
 # lib.sh sets varables. Expecting docker_cmd, docker_common_options_mac or docker_common_options
 source $DIR/../lib.sh
 
 mkdir -p $DIR/container/home
-mkdir -p $DIR/container/local
-mkdir -p $DIR/container/cache
+mkdir -p $DIR/container/home/.local
+mkdir -p $DIR/container/home/.cache
+mkdir -p $DIR/container/home/.config
+mkdir -p $DIR/container/home/.local
 
 if [ "$(uname)" == "Darwin" ]; then
     # docker_cmd=nvidia-docker, or docker
@@ -18,30 +20,13 @@ if [ "$(uname)" == "Darwin" ]; then
     $docker_cmd run --rm -it \
         --name d_haskell \
         -v /tmp:/tmp \
-        -v /var/run/docker.sock:/var/run/docker.sock \
-        -u=$UID:$(id -g $USER) \
-        -v $DIR/container/home:/home/$DOCKER_USER \
-        -v $DIR/container/home:/home/$USER \
-        -v $DIR/container/config:/home/$DOCKER_USER/.config \
-        -v $DIR/container/config:/home/$USER/.config \
-        -v $DIR/container/local:/home/$DOCKER_USER/.local \
-        -v $DIR/container/local:/home/$USER/.local \
-        -v $DIR/container/cache:/home/$DOCKER_USER/.cache \
-        -v $DIR/container/cache:/home/$USER/.cache \
-        -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
-        -v $HOME/.ssh:/home/$USER/.ssh \
-        -v $HOME/Projects:/home/$DOCKER_USER/Projects \
-        -v $HOME/Projects:/home/$USER/Projects \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        -e DISPLAY=docker.for.mac.localhost:0 \
+        -e DISPLAY=docker.for.mac.host.internal:0 \
         --device /dev/shm \
         --device /dev/input \
-        -v /dev/shm:/dev/shm \
-        -v /etc/hosts:/etc/hosts:ro \
-        -v /dev/shm:/dev/shm \
-        --privileged \
+        -v $DIR/container/home:/home/$DOCKER_USER \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
-        -v $HOME/Projects:/home/$USER/Projects \
+        --privileged \
         --workdir=/home/$DOCKER_USER \
         -e HOME=/home/$DOCKER_USER \
         d_haskell $@
@@ -57,17 +42,7 @@ else
         -v /var/run/docker.sock:/var/run/docker.sock \
         -u=$UID:$(id -g $USER) \
         -v $DIR/container/home:/home/$DOCKER_USER \
-        -v $DIR/container/home:/home/$USER \
-        -v $DIR/container/config:/home/$DOCKER_USER/.config \
-        -v $DIR/container/config:/home/$USER/.config \
-        -v $DIR/container/local:/home/$DOCKER_USER/.local \
-        -v $DIR/container/local:/home/$USER/.local \
-        -v $DIR/container/cache:/home/$DOCKER_USER/.cache \
-        -v $DIR/container/cache:/home/$USER/.cache \
-        -v $HOME/.ssh:/home/$DOCKER_USER/.ssh \
-        -v $HOME/.ssh:/home/$USER/.ssh \
         -v $HOME/Projects:/home/$DOCKER_USER/Projects \
-        -v $HOME/Projects:/home/$USER/Projects \
         --workdir=/home/$DOCKER_USER \
         -e HOME=/home/$DOCKER_USER \
         $docker_common_options \
