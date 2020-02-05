@@ -4,6 +4,7 @@ FROM archlinux/base
 
 RUN pacman -Sy --noconfirm coreutils tar less findutils diffutils grep sed gawk util-linux procps-ng
 RUN pacman -Sy --noconfirm git zsh sudo curl wget tmux unzip base-devel openssh make
+RUN pacman -Sy --noconfirm tree
 
 # -------------------------------------------------------
 # create user
