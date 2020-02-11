@@ -25,6 +25,13 @@ RUN pip install --upgrade awscli  # --user
 # aws sam
 RUN pip install --upgrade aws-sam-cli
 
+# ------------------------------------------
+# install serverless framework
+# ------------------------------------------
+RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install -g serverless
+
 # -------------------------------------------------------
 # -------------------------------------------------------
 # create user
